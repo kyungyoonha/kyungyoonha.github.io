@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>※ 콜백함수 &amp; 익명함수 · yoo</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="### 1. 익명함수"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="※ 콜백함수 &amp; 익명함수 · yoo"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kyungyoonha.github.io/"/><meta property="og:description" content="### 1. 익명함수"/><meta property="og:image" content="https://kyungyoonha.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://kyungyoonha.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://kyungyoonha.github.io/blog/atom.xml" title="yoo Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://kyungyoonha.github.io/blog/feed.xml" title="yoo Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="yoo"/><h2 class="headerTitleWithLogo">yoo</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/javascript_1" target="_self">Docs</a></li><li class=""><a href="/docs/doc5" target="_self">API</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Javascript</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Javascript</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/javascript_1">자료구조</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript_2">변수타입 (기본형 / 참조형)</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript_3">Async Await</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/javascript_4">콜백함수 &amp; 익명함수</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript_5">AJAX란</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript_6">Object.entries(obj)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">web</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/web_1">s Token / Refresh Token</a></li><li class="navListItem"><a class="navItem" href="/docs/web_2">REAL DOM (VS) VIRTUAL DOM</a></li><li class="navListItem"><a class="navItem" href="/docs/web_3">HTTP vs HTTPs &amp; https 서버 인증서 암호화 과정</a></li><li class="navListItem"><a class="navItem" href="/docs/web_4">HTTP 통신 vs Socket 통신</a></li><li class="navListItem"><a class="navItem" href="/docs/web_5">Asynchronous</a></li><li class="navListItem"><a class="navItem" href="/docs/web_6">웹팩이란 무엇인가?</a></li><li class="navListItem"><a class="navItem" href="/docs/web_7">서버API 통신 &amp; REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/web_8">크로스도메인 &amp; CORS</a></li><li class="navListItem"><a class="navItem" href="/docs/web_9">브라우저 캐시</a></li><li class="navListItem"><a class="navItem" href="/docs/web_10">번들러</a></li><li class="navListItem"><a class="navItem" href="/docs/web_11">ESLint</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">css</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/css_1">npm vs yarn</a></li><li class="navListItem"><a class="navItem" href="/docs/css_2">mvvm 패턴</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">git</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/git_1">git 명령어</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">※ 콜백함수 &amp; 익명함수</h1></header><article><div><span><h3><a class="anchor" aria-hidden="true" id="1-익명함수"></a><a href="#1-익명함수" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. 익명함수</h3>
+<ul>
+<li><h4><a class="anchor" aria-hidden="true" id="1-1-정의"></a><a href="#1-1-정의" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1-1 정의</h4>
+<ul>
+<li>이름이 없는 함수로, 변수에 함수 코드를 저장하는 대신 함수명을 사용하지 않는다</li>
+<li>변수명을 마치 함수명처럼 사용해서 함수를 호출가능하다.</li>
+<li>함수를 변수에 저장하거나, 어떤 객체의 메서드로 설정하기 위해 콜백함수로도 쓰인다.</li>
+</ul>
+<pre><code class="hljs css language-javascript"><span class="hljs-comment">// 익명 함수 1</span>
+<span class="hljs-keyword">var</span> func = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">text</span>) </span>{
+    alert(<span class="hljs-string">"Hello, "</span> + text);
+};
+func(<span class="hljs-string">"text"</span>);
+
+<span class="hljs-comment">// 익명 함수 2</span>
+<span class="hljs-keyword">var</span> func = <span class="hljs-function">(<span class="hljs-params">text</span>) =&gt;</span> {
+    alert(<span class="hljs-string">"Hello, "</span> + text);
+};
+func();
+
+<span class="hljs-comment">// 즉시 실행함수 형태 1</span>
+(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">text</span>) </span>{
+    alert(<span class="hljs-string">"Hello, "</span> + text);
+})(
+    <span class="hljs-comment">// 즉시 실행함수 형태 2</span>
+    <span class="hljs-function">(<span class="hljs-params">text</span>) =&gt;</span> {
+        alert(<span class="hljs-string">"Hello, "</span> + text);
+    }
+);
+</code></pre></li>
+<li><h4><a class="anchor" aria-hidden="true" id="1-2-출처"></a><a href="#1-2-출처" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1-2 출처</h4>
+<ul>
+<li><a href="https://dasima.xyz/javascript-anonymous-function/">https://dasima.xyz/javascript-anonymous-function/</a></li>
+<li><a href="https://osxtip.tistory.com/635">https://osxtip.tistory.com/635</a></li>
+</ul></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="2-콜백함수"></a><a href="#2-콜백함수" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. 콜백함수</h3>
+<ul>
+<li><h4><a class="anchor" aria-hidden="true" id="2-1-정의"></a><a href="#2-1-정의" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2-1 정의</h4>
+<ul>
+<li>함수 안에서 어떤 특정 시점에 호출되는 함수</li>
+<li>보통 함수의 매게변수로 전달하여 특정 시점에 콜백함수를 호출한다.</li>
+<li>비동기적 (Asynchronous) 방식으로 쓰인다.</li>
+<li>특정 로적이 끝날때까지 기다리지 않고 나머지 코드를 먼저 실행한다.</li>
+<li>콜백함수를 통해 특정 로직이 끝났을 때 동작을 실행 시킬수 있다</li>
+</ul></li>
+<li><h4><a class="anchor" aria-hidden="true" id="2-2-장점"></a><a href="#2-2-장점" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2-2 장점</h4>
+<ul>
+<li>함수 안에서 어떤 특정 시점에 호출 가능</li>
+<li>보통 함수의 매게변수로 전달하여 특정 시점에 콜백함수를 호출한다.</li>
+<li>비동기적 (Asynchronous) 방식으로 쓰일 수 있다.</li>
+<li>특정 로적이 끝날때까지 기다리지 않고 나머지 코드를 먼저 실행가능하다</li>
+<li>콜백함수를 통해 특정 로직이 끝났을 때 동작을 실행 시킬수 있다</li>
+</ul></li>
+<li><h4><a class="anchor" aria-hidden="true" id="2-2-단점"></a><a href="#2-2-단점" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2-2 단점</h4>
+<ul>
+<li>로직이 길어질 경우 아래와 같은 callback hell에 빠질 수 있다</li>
+<li>에러처리는 물론 복잡한 기능을 구현시키기에도 어렵다.</li>
+<li>또한 한번에 두개의 비동기 작업을 처리하기에도 어렵다.</li>
+</ul>
+<p><img src="/img/javascript/javascript_4_1.png" alt="img"></p></li>
+<li><h4><a class="anchor" aria-hidden="true" id="2-2-ajax-통신-콜백사용-예제"></a><a href="#2-2-ajax-통신-콜백사용-예제" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2-2 Ajax 통신 콜백사용 예제</h4>
+<pre><code class="hljs css language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params">callbackFunc</span>) </span>{
+    $.<span class="hljs-keyword">get</span>("https://domain.com/products/1", function (response) {
+        callbackFunc(response); <span class="hljs-comment">// 서버에서 받은 데이터 response를 callbackFunc() 함수에 넘겨줌</span>
+    });
+}
+
+getData(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">tableData</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(tableData); <span class="hljs-comment">// $.get()의 response 값이 tableData에 전달됨</span>
+});
+</code></pre></li>
+<li><h4><a class="anchor" aria-hidden="true" id="2-3-익명함수-예제"></a><a href="#2-3-익명함수-예제" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2-3 익명함수 예제</h4>
+<pre><code class="hljs css language-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">func</span>(<span class="hljs-params">callback</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">typeof</span> callback);
+    <span class="hljs-comment">// 넘어온 함수 실행하기</span>
+    callback();
+}
+
+<span class="hljs-keyword">var</span> aFunc = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"익명함수 호출됨..."</span>);
+};
+
+func(aFunc);
+</code></pre></li>
+<li><h4><a class="anchor" aria-hidden="true" id="2-4-출처"></a><a href="#2-4-출처" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2-4 출처</h4>
+<ul>
+<li><a href="https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/">https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/</a></li>
+<li><a href="https://deftkang.tistory.com/20">https://deftkang.tistory.com/20</a></li>
+<li><a href="https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/">https://joshua1988.github.io/web-development/javascript/javascript-asynchronous-operation/</a></li>
+<li><a href="https://deftkang.tistory.com/20">https://deftkang.tistory.com/20</a></li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="promise"></a><a href="#promise" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Promise</h2>
+<h3><a class="anchor" aria-hidden="true" id="정의"></a><a href="#정의" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>정의</h3>
+<ul>
+<li>비동기 연산을 수행하고 연산이 종료되면 결과를 알려주기 위해 사용</li>
+<li>비동기식 연산결과를 알려주겠다고 약속하는 것</li>
+<li>장점. 비동기 처리 시점을 명확하게 해준다.</li>
+<li>장점. 가독성이 좋아지고, 에러 예외처리가 쉬워진다.</li>
+<li>장점. 전통적인 방법인 Callback 패턴의 단점을 보완함</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="출처"></a><a href="#출처" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>출처</h3>
+<ul>
+<li><a href="https://infoscis.github.io/2018/02/27/ecmascript-6-promises-and-asynchronous-programming/">https://infoscis.github.io/2018/02/27/ecmascript-6-promises-and-asynchronous-programming/</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/javascript_3"><span class="arrow-prev">← </span><span>Async Await</span></a><a class="docs-next button" href="/docs/javascript_5"><span>AJAX란</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#promise">Promise</a><ul class="toc-headings"><li><a href="#정의">정의</a></li><li><a href="#출처">출처</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="yoo" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Your Name or Your Company Name</section></footer></div></body></html>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
-        <title>kyungyoonha Blog</title>
+        <title>yoo Blog</title>
         <link>https://kyungyoonha.github.io/blog</link>
-        <description>The best place to stay up-to-date with the latest kyungyoonha news and events.</description>
+        <description>The best place to stay up-to-date with the latest yoo news and events.</description>
         <lastBuildDate>Tue, 24 Oct 2017 06:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
-            <title>kyungyoonha Blog</title>
+            <title>yoo Blog</title>
             <url>https://kyungyoonha.github.io/img/favicon.ico</url>
             <link>https://kyungyoonha.github.io/blog</link>
         </image>

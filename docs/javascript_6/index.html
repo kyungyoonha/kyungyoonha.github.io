@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>※ 유용 · yoo</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="-   key / value 같이 사용할때 유용하다."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="※ 유용 · yoo"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kyungyoonha.github.io/"/><meta property="og:description" content="-   key / value 같이 사용할때 유용하다."/><meta property="og:image" content="https://kyungyoonha.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://kyungyoonha.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://kyungyoonha.github.io/blog/atom.xml" title="yoo Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://kyungyoonha.github.io/blog/feed.xml" title="yoo Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="yoo"/><h2 class="headerTitleWithLogo">yoo</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/javascript_1" target="_self">Docs</a></li><li class=""><a href="/docs/doc5" target="_self">API</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Javascript</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Javascript</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/javascript_1">자료구조</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript_2">변수타입 (기본형 / 참조형)</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript_3">Async Await</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript_4">콜백함수 &amp; 익명함수</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript_5">AJAX란</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/javascript_6">Object.entries(obj)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">web</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/web_1">s Token / Refresh Token</a></li><li class="navListItem"><a class="navItem" href="/docs/web_2">REAL DOM (VS) VIRTUAL DOM</a></li><li class="navListItem"><a class="navItem" href="/docs/web_3">HTTP vs HTTPs &amp; https 서버 인증서 암호화 과정</a></li><li class="navListItem"><a class="navItem" href="/docs/web_4">HTTP 통신 vs Socket 통신</a></li><li class="navListItem"><a class="navItem" href="/docs/web_5">Asynchronous</a></li><li class="navListItem"><a class="navItem" href="/docs/web_6">웹팩이란 무엇인가?</a></li><li class="navListItem"><a class="navItem" href="/docs/web_7">서버API 통신 &amp; REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/web_8">크로스도메인 &amp; CORS</a></li><li class="navListItem"><a class="navItem" href="/docs/web_9">브라우저 캐시</a></li><li class="navListItem"><a class="navItem" href="/docs/web_10">번들러</a></li><li class="navListItem"><a class="navItem" href="/docs/web_11">ESLint</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">css</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/css_1">npm vs yarn</a></li><li class="navListItem"><a class="navItem" href="/docs/css_2">mvvm 패턴</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">git</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/git_1">git 명령어</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">※ 유용</h1></header><article><div><span><ul>
+<li>key / value 같이 사용할때 유용하다.</li>
+</ul>
+<pre><code class="hljs css language-JSX"><span class="hljs-keyword">const</span> obj = {
+  <span class="hljs-attr">a</span>: <span class="hljs-string">'1'</span>,
+  <span class="hljs-attr">b</span>: <span class="hljs-string">'2'</span>,
+  <span class="hljs-attr">c</span>: <span class="hljs-string">'3'</span>,
+  <span class="hljs-attr">d</span>: <span class="hljs-string">'4'</span>,
+  <span class="hljs-attr">e</span>: <span class="hljs-string">'5'</span>,
+}
+
+<span class="hljs-built_in">Object</span>.entries(obj).forEach(<span class="hljs-function">(<span class="hljs-params">[key, value]</span>) =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`KEY:<span class="hljs-subst">${key}</span> / VALUE: <span class="hljs-subst">${value}</span>`</span>)
+}
+
+<span class="hljs-comment">// KEY:a / VALUE: 1</span>
+<span class="hljs-comment">// KEY:b / VALUE: 2</span>
+<span class="hljs-comment">// KEY:c / VALUE: 3</span>
+<span class="hljs-comment">// KEY:d / VALUE: 4</span>
+<span class="hljs-comment">// KEY:e / VALUE: 5</span>
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/javascript_5"><span class="arrow-prev">← </span><span>AJAX란</span></a><a class="docs-next button" href="/docs/web_1"><span>s Token / Refresh Token</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="yoo" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Your Name or Your Company Name</section></footer></div></body></html>
