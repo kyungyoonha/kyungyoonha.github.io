@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>※ 서버API 통신 &amp; REST API란 무엇인가? · TIL: TODAY I LEARN</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 1. 서버 API 통신"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="※ 서버API 통신 &amp; REST API란 무엇인가? · TIL: TODAY I LEARN"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kyungyoonha.github.io/"/><meta property="og:description" content="## 1. 서버 API 통신"/><meta property="og:image" content="https://kyungyoonha.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://kyungyoonha.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://kyungyoonha.github.io/blog/atom.xml" title="TIL: TODAY I LEARN Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://kyungyoonha.github.io/blog/feed.xml" title="TIL: TODAY I LEARN Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="TIL: TODAY I LEARN"/><h2 class="headerTitleWithLogo">TIL: TODAY I LEARN</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/project/devpedia/devpedia_0" target="_self">Project</a></li><li class="siteNavGroupActive"><a href="/docs/javascript/javascript_1" target="_self">TIL</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>web</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Javascript</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/javascript/javascript_1">자료구조</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript/javascript_2">변수타입 (기본형 / 참조형)</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript/javascript_3">Async Await</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript/javascript_4">콜백함수 &amp; 익명함수</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript/javascript_5">AJAX란</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript/javascript_6">Object.entries(obj)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">web</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/web/web_1">Access Token / Refresh Token</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_2">REAL DOM (VS) VIRTUAL DOM</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_3">HTTP vs HTTPs &amp; https 서버 인증서 암호화 과정</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_4">HTTP 통신 vs Socket 통신</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_5">Asynchronous</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_6">웹팩이란 무엇인가?</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/web/web_7">서버API 통신 &amp; REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_8">크로스도메인 &amp; CORS</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_9">브라우저 캐시</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_10">번들러</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_11">ESLint</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">css</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/css/css_1">Transform</a></li><li class="navListItem"><a class="navItem" href="/docs/css/css_2">벤더 프리픽스란?</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">git</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/git/git_1">git 명령어</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">node</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/node/node_0">Node.js 교과서</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">※ 서버API 통신 &amp; REST API란 무엇인가?</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="1-서버-api-통신"></a><a href="#1-서버-api-통신" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. 서버 API 통신</h2>
+<h3><a class="anchor" aria-hidden="true" id="1-1-정의"></a><a href="#1-1-정의" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1-1 정의</h3>
+<ul>
+<li>Application Programming Interface의 약자</li>
+<li>API는 한 프로그램이 다른 프로그램을 이용할 때 쓰는 인터페이스로 입출력이 데이터로 된다.</li>
+<li>어떤 특정 사이트에서 특정 데이터를 공유할 경우 어떤 방식으로 요청해야 하는지 어떤 데이터를 받을 수 있는지 등의 규격을 말한다.</li>
+<li>서버와 데이터베이스에 대한 출입구 역할로 허용된 사람들에게만 접근성 부여할 수 있다.</li>
+<li>UI (User Interface)와 비교하면 이해가 편함 (사용자 인터페이스)</li>
+<li>UI는 일반 사용자는 버튼이나 링크, 이미지등 특정 ui를 통해 조작함으로써 시스템을 제어한다.</li>
+<li>API는 개발자가 특정 프로그램에서 제공하는 규격을 이용하여 응용프로그램을 제어하고 구축</li>
+</ul>
+<table>
+<thead>
+<tr><th><img src="/img/web/web_8_1.png" alt="img"></th></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="1-2-출처"></a><a href="#1-2-출처" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1-2 출처</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=Z4kH0IZVT-8&amp;t=95s">https://www.youtube.com/watch?v=Z4kH0IZVT-8&amp;t=95s</a></li>
+<li><a href="http://blog.wishket.com/api%EB%9E%80-%EC%89%BD%EA%B2%8C-%EC%84%A4%EB%AA%85-%EA%B7%B8%EB%A6%B0%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8/">http://blog.wishket.com/api%EB%9E%80-%EC%89%BD%EA%B2%8C-%EC%84%A4%EB%AA%85-%EA%B7%B8%EB%A6%B0%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8/</a></li>
+<li><a href="https://m.blog.naver.com/azure0777/220749852024">https://m.blog.naver.com/azure0777/220749852024</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="2-rest-api"></a><a href="#2-rest-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. REST API</h2>
+<h3><a class="anchor" aria-hidden="true" id="2-1-정의"></a><a href="#2-1-정의" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2-1 정의</h3>
+<ul>
+<li><p>Representational State Transfer의 약자로 HTTP 통신에서 어떤 자원에 대한 CRUD(Create, Read, Update, Delete) 요청을 Resource와 Method(GET, POS, DELETE등)로 표현하여 특정한 형태로 전달하는 방식을 말한다. HTTP 프로토콜 (링크를 기반으로 데이터를 요청하고 받음)의 장점을 최대한 활용 가능한 방법이다.</p></li>
+<li><p>resource. 모든 자원에는 고유한 ID가 존재하고 이 자원은 Server에 존재한다.</p></li>
+<li><p>resource. 자원을 구분하는 ID는 /groups/:group_id 와 같은 HTTP URI이다.</p></li>
+<li><p>method. GET / POST / PUT /DELTE</p></li>
+<li><p>Representaion of Resource. JSON, XMS, TEXT, RSS등 다양한 형태로 데이터를 보낼 수 있다.</p></li>
+<li><p>Representaion of Resource. JSON을 많이 쓴는 추새</p></li>
+</ul>
+<table>
+<thead>
+<tr><th><img src="/img/web/web_8_2.png" alt="img"></th></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<ul>
+<li>moives라는 Resource에 다양한 메소드(GET, POST, PUT, DELETE)로 접근이 가능해짐</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="2-2-출처"></a><a href="#2-2-출처" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2-2 출처</h3>
+<ul>
+<li><a href="https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html">https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html</a></li>
+<li><a href="https://mangkyu.tistory.com/46">https://mangkyu.tistory.com/46</a></li>
+<li><a href="https://sookmyunglion.tistory.com/9">https://sookmyunglion.tistory.com/9</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/web/web_6"><span class="arrow-prev">← </span><span>웹팩이란 무엇인가?</span></a><a class="docs-next button" href="/docs/web/web_8"><span>크로스도메인 &amp; CORS</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1-서버-api-통신">1. 서버 API 통신</a><ul class="toc-headings"><li><a href="#1-1-정의">1-1 정의</a></li><li><a href="#1-2-출처">1-2 출처</a></li></ul></li><li><a href="#2-rest-api">2. REST API</a><ul class="toc-headings"><li><a href="#2-1-정의">2-1 정의</a></li><li><a href="#2-2-출처">2-2 출처</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="TIL: TODAY I LEARN" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 KyungYoon Ha</section></footer></div></body></html>
