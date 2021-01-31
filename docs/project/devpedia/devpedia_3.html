@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>※ 마우스 따라다니는 평점 별 컴포넌트 만들기 · TIL: TODAY I LEARN</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 1. 🎞 동작"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="※ 마우스 따라다니는 평점 별 컴포넌트 만들기 · TIL: TODAY I LEARN"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kyungyoonha.github.io/"/><meta property="og:description" content="## 1. 🎞 동작"/><meta property="og:image" content="https://kyungyoonha.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://kyungyoonha.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://kyungyoonha.github.io/blog/atom.xml" title="TIL: TODAY I LEARN Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://kyungyoonha.github.io/blog/feed.xml" title="TIL: TODAY I LEARN Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="TIL: TODAY I LEARN"/><h2 class="headerTitleWithLogo">TIL: TODAY I LEARN</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/project/devpedia/devpedia_0" target="_self">Project</a></li><li class=""><a href="/docs/javascript/javascript_1" target="_self">TIL</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>왓챠피디아 제로</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">왓챠피디아 제로</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_0">※ 소개</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_1">※ Custom Hooks로 Form inputs 관리하기</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_2">※ 엑세스 토큰 만료시, 리프레시 토큰으로 엑세스 토큰 얻기</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/project/devpedia/devpedia_3">※ 마우스 따라다니는 평점 별 컴포넌트 만들기</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">채식한입</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/project/devtarian/devtarian_0">※ 소개</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">※ 마우스 따라다니는 평점 별 컴포넌트 만들기</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="1--동작"></a><a href="#1--동작" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. 🎞 동작</h2>
+<p><img src="/img/project/devpedia/stars.gif" alt="동작"></p>
+<h2><a class="anchor" aria-hidden="true" id="2-원리"></a><a href="#2-원리" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. 원리.</h2>
+<ul>
+<li>색이 없는 별 5개를 밑에 깔아주고 노란색의 별 컴포넌트는 그 위에 겹치게하고 마우스 움직임에 따라서 width가 조정되게 한다.</li>
+<li>width: 0% =&gt; 별 0 개</li>
+<li>width: 40% =&gt; 별 2개</li>
+<li>width: 50% =&gt; 별 2.5개</li>
+<li>width: 100% =&gt; 별 5개</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="3-코드"></a><a href="#3-코드" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. 코드</h2>
+<h4><a class="anchor" aria-hidden="true" id="3-1-starjs"></a><a href="#3-1-starjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3-1 star.js</h4>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> Star = <span class="hljs-function">(<span class="hljs-params">{ isRated }</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> isRated ? <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">StarRated</span>/&gt;</span></span> : <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">StarNormal</span>/&gt;</span></span>
+};
+
+
+<span class="hljs-keyword">const</span> StarRated = styled.div<span class="hljs-string">`
+    display: inline-block;
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgdmlld0JveD0iMCAwIDQ0IDQ0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZmlsbD0iI0ZGREQ2MyIgZD0iTTIyIDMzLjQ0NEw5LjgzIDQyLjMyN2MtLjc4NC41NzItMS44NDItLjE5Ni0xLjUzOS0xLjExOGw0LjY4Ny0xNC4zMkwuNzY5IDE4LjA2Yy0uNzg3LS41NjktLjM4My0xLjgxMi41ODgtMS44MWwxNS4wNjcuMDMzIDQuNjI0LTE0LjM0Yy4yOTgtLjkyNCAxLjYwNi0uOTI0IDEuOTA0IDBsNC42MjQgMTQuMzQgMTUuMDY3LS4wMzNjLjk3MS0uMDAyIDEuMzc1IDEuMjQxLjU4OCAxLjgxbC0xMi4yMDkgOC44MjkgNC42ODggMTQuMzJjLjMwMi45MjItLjc1NiAxLjY5LTEuNTQgMS4xMThMMjIgMzMuNDQ0eiIvPgogICAgPC9nPgo8L3N2Zz4K)
+        center center / contain no-repeat;
+    vertical-align: top;
+    width: 40px;
+    height: 40px;
+`</span>;
+
+<span class="hljs-keyword">const</span> StarNormal = styled.div<span class="hljs-string">`
+    display: inline-block;
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgdmlld0JveD0iMCAwIDQ0IDQ0Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPHBhdGggZmlsbD0iI0VFRSIgZD0iTTIyIDMzLjQ0NEw5LjgzIDQyLjMyN2MtLjc4NC41NzItMS44NDItLjE5Ni0xLjUzOS0xLjExOGw0LjY4Ny0xNC4zMkwuNzY5IDE4LjA2Yy0uNzg3LS41NjktLjM4My0xLjgxMi41ODgtMS44MWwxNS4wNjcuMDMzIDQuNjI0LTE0LjM0Yy4yOTgtLjkyNCAxLjYwNi0uOTI0IDEuOTA0IDBsNC42MjQgMTQuMzQgMTUuMDY3LS4wMzNjLjk3MS0uMDAyIDEuMzc1IDEuMjQxLjU4OCAxLjgxbC0xMi4yMDkgOC44MjkgNC42ODggMTQuMzJjLjMwMi45MjItLjc1NiAxLjY5LTEuNTQgMS4xMThMMjIgMzMuNDQ0eiIvPgogICAgPC9nPgo8L3N2Zz4K)
+        center center / contain no-repeat;
+    vertical-align: top;
+    width: 40px;
+    height: 40px;
+`</span>;
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="3-2-starsjs"></a><a href="#3-2-starsjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3-2 stars.js</h4>
+<ul>
+<li>단위 변환
+<ul>
+<li>별 하나의 길이는 40px 이므로 총 길이는 200px</li>
+<li>181 ~ 200 =&gt; 5</li>
+<li>161 ~ 180 =&gt; 4.5</li>
+<li>...</li>
+<li>1 ~ 20 =&gt; 0.5</li>
+<li>0 =&gt; 0</li>
+</ul></li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> Stars = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> dispatch = useDispatch();
+    <span class="hljs-keyword">const</span> [mouseRate, setMouseRate] = useState(<span class="hljs-number">0</span>);
+    <span class="hljs-keyword">const</span> {
+        <span class="hljs-attr">userData</span>: { score },
+    } = useSelector(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state.content);
+
+    <span class="hljs-comment">// 초기 Score 가 있는 경우 초기 값 변경</span>
+    useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        setMouseRate(score);
+    }, [score]);
+
+    <span class="hljs-comment">// 단위 변환</span>
+    <span class="hljs-keyword">const</span> handleMouseMove = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        setMouseRate((<span class="hljs-built_in">Math</span>.floor((e.nativeEvent.layerX / <span class="hljs-number">40</span>) * <span class="hljs-number">2</span>) + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>);
+    };
+
+    <span class="hljs-keyword">const</span> handleMouseLeave = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        setMouseRate(score || <span class="hljs-number">0</span>);
+    };
+
+    <span class="hljs-keyword">const</span> handleClick = <span class="hljs-keyword">async</span> () =&gt; {
+        <span class="hljs-keyword">return</span> mouseRate === score
+            ? dispatch(contentActions.deleteStar()) <span class="hljs-comment">// 같은값 클릭시 기존값 제거</span>
+            : dispatch(contentActions.setStar(mouseRate));
+    };
+
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">StarContainer</span> <span class="hljs-attr">rate</span>=<span class="hljs-string">{mouseRate}</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"text"</span>&gt;</span>{ratedTextMap[score] || "평가하기"}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+                <span class="hljs-attr">className</span>=<span class="hljs-string">"star_block"</span>
+                <span class="hljs-attr">onMouseMove</span>=<span class="hljs-string">{handleMouseMove}</span>
+                <span class="hljs-attr">onMouseLeave</span>=<span class="hljs-string">{handleMouseLeave}</span>
+                <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleClick}</span>
+            &gt;</span>
+                {[...new Array(5)].map((_, idx) =&gt; (
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Star</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{idx}</span> /&gt;</span>
+                ))}
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"rated_stars"</span>&gt;</span>
+                    {[...new Array(5)].map((_, idx) =&gt; (
+                        <span class="hljs-tag">&lt;<span class="hljs-name">Star</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{idx}</span> <span class="hljs-attr">isRated</span>=<span class="hljs-string">{true}</span> /&gt;</span>
+                    ))}
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">StarContainer</span>&gt;</span></span>
+    );
+};
+
+<span class="hljs-keyword">const</span> StarContainer = styled.div<span class="hljs-string">`
+    .text {
+        color: rgb(120, 120, 120);
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: -0.2px;
+        line-height: 16px;
+        text-align: center;
+
+    }
+
+    .star_block {
+        position: relative;
+        text-align: center;
+        width: 200px;
+        margin: 0px auto;
+        cursor: pointer;
+
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+        height: 40px;
+    }
+
+    .unratedStars {
+        display: inline-block;
+        position: relative;
+        vertical-align: top;
+        height: 40px;
+    }
+
+    .rated_stars {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        white-space: nowrap;
+        width: <span class="hljs-subst">${(props) =&gt; (props.rate ? props.rate * <span class="hljs-number">20</span> + <span class="hljs-string">"%"</span> : <span class="hljs-string">"0"</span>)}</span>;
+        height: 40px;
+        overflow: hidden;
+    }
+
+`</span>;
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/project/devpedia/devpedia_2"><span class="arrow-prev">← </span><span>※ 엑세스 토큰 만료시, 리프레시 토큰으로 엑세스 토큰 얻기</span></a><a class="docs-next button" href="/docs/project/devtarian/devtarian_0"><span>※ 소개</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1--동작">1. 🎞 동작</a></li><li><a href="#2-원리">2. 원리.</a></li><li><a href="#3-코드">3. 코드</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="TIL: TODAY I LEARN" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 KyungYoon Ha</section></footer></div></body></html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>lecture/zerocho_nodebird/nodebird · TIL: TODAY I LEARN</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 제로초 강의"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="lecture/zerocho_nodebird/nodebird · TIL: TODAY I LEARN"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kyungyoonha.github.io/"/><meta property="og:description" content="## 제로초 강의"/><meta property="og:image" content="https://kyungyoonha.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://kyungyoonha.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://kyungyoonha.github.io/blog/atom.xml" title="TIL: TODAY I LEARN Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://kyungyoonha.github.io/blog/feed.xml" title="TIL: TODAY I LEARN Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="TIL: TODAY I LEARN"/><h2 class="headerTitleWithLogo">TIL: TODAY I LEARN</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/project/devpedia/devpedia_0" target="_self">Project</a></li><li class=""><a href="/docs/javascript/javascript_1" target="_self">TIL</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">lecture/zerocho_nodebird/nodebird</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="제로초-강의"></a><a href="#제로초-강의" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>제로초 강의</h2>
+<h3><a class="anchor" aria-hidden="true" id="리덕스-사가"></a><a href="#리덕스-사가" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>리덕스 사가</h3>
+<ul>
+<li>request / success / failure 까지 정의해준다.</li>
+<li>throttle / takeLatest =&gt; 지연시켜주지만 둘다 리퀘스트는 발생한다, response만 한번 받음</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="immer"></a><a href="#immer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>immer</h3>
+<ul>
+<li>손쉽게 불변성을 유지시켜준다</li>
+<li>filter -&gt; unshift</li>
+<li>배열 합치기 -&gt; concat</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="성능-최적화"></a><a href="#성능-최적화" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>성능 최적화</h3>
+<ul>
+<li>프로젝트시 수천개의 데이터를 잘 처리해서 보여주는 것이 좋다.</li>
+<li>faker 이용</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="facker"></a><a href="#facker" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>facker</h3>
+<ul>
+<li>더미 데이터 사용하기 좋음</li>
+<li>이미지까지</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="무한스크롤"></a><a href="#무한스크롤" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>무한스크롤</h3>
+<pre><code class="hljs css language-js">useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> scroll = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">if</span> (winodw.scrollY +  <span class="hljs-built_in">document</span>.documentElement.clientHeight &gt; <span class="hljs-built_in">document</span>.documentElement.scrollHeight - <span class="hljs-number">300</span>){
+            <span class="hljs-keyword">if</span>(hasMorePost &amp;&amp;)
+        }
+        <span class="hljs-comment">// 3가지만 있으면 됌</span>
+        <span class="hljs-comment">// scollY(다 내렸을때) + clientHeight = scrollHeigth</span>
+        <span class="hljs-comment">// scoll Y :얼마나 내렸는지</span>
+        <span class="hljs-comment">// clientHieght: 보이는 화면 높이</span>
+        <span class="hljs-comment">// scrollHeight: 총 길이</span>
+    }
+    
+    <span class="hljs-built_in">window</span>.addEventListner(<span class="hljs-string">'scroll'</span>, scroll)
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">window</span>.removeEventListner(<span class="hljs-string">'scroll'</span>, scroll)
+}, [])
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="무한스크롤-scroll-이벤트시-requst-한번만-요청하기"></a><a href="#무한스크롤-scroll-이벤트시-requst-한번만-요청하기" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>무한스크롤 scroll 이벤트시, requst 한번만 요청하기</h3>
+<ul>
+<li>request -&gt; isLoading : true</li>
+<li>success -&gt; isLoading : false</li>
+<li>failure -&gt; isLoading : false</li>
+<li>즉, isLoading이 false일때만 추가로 불러오는 api를 요청하면 된다.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="react-verturelize"></a><a href="#react-verturelize" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>react-verturelize</h3>
+<ul>
+<li>너무많은 데이터를 가지고 오는 경우 메모리가 부족 -&gt; 특히나 모바일</li>
+<li>이런 경우 지나간 데이터는 메모리에만 있고 화면에서는 지워주고 새로운 데이터를 추가해준다.</li>
+<li>인스타그램 같은 예시임</li>
+<li>수백개가 이미 로딩되어 있고 화면에는 3개만 보인다</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="서버와-프론트를-나누는-이유"></a><a href="#서버와-프론트를-나누는-이유" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>서버와 프론트를 나누는 이유</h3>
+<ul>
+<li>대규모 앱이 되었을때는 나누는 것이 효과적이다.</li>
+<li>메모리가 터지는 것을 방지하기 위해 스케일링을 해주는데 프론트랑 서버가 같이 구현되어있으면</li>
+<li>스케일링 할때마다 전체가 다 복사되어 매우 비효율 적이다.</li>
+<li>프론트는 서버사이드 렌더링, 백엔드는 API를 제공하는 역할을 하는데 한쪽에만 요청이 몰릴 수 있음</li>
+<li>대규모 프로젝트에서는 기능별로 서버를 나눠준다 -&gt; 특정 기능에 데이터 요청이 많이 왔을때 그 기능만 서버를 여러개로 늘려준다.</li>
+<li>배민 같은 경우 피크타임때 주문용 서버, 결제용 서버만 여러개 늘려놓으면됌 -&gt; 상품등록 /어드민은 늘릴필요가 없다.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="노드는-서버가-아니다"></a><a href="#노드는-서버가-아니다" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>노드는 서버가 아니다.</h3>
+<ul>
+<li>노드는 서버가 아니라 자바스크립트 런타임 환경임</li>
+<li>따로 설치할 필요가 없고 http를 require하여 사용한다</li>
+<li>const http = require('http');</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="rest-api"></a><a href="#rest-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>REST API</h3>
+<ul>
+<li>put -&gt; 전체수정</li>
+<li>patch -&gt; 부분수정</li>
+<li>options -&gt; 찔러보기, 서버가 내 요청을 받아 줄 것인지 체크</li>
+<li>head -&gt; 헤더만 가져오기</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="mysql2"></a><a href="#mysql2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Mysql2</h2>
+<ul>
+<li>일종의 드라이버로 노드와 mysql을 연결시켜준다.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="시퀄라이즈"></a><a href="#시퀄라이즈" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>시퀄라이즈</h2>
+<ul>
+<li>자바스크립트로 sql을 조작할 수 있음</li>
+<li>npx sequelize init</li>
+<li>한글 + 이모티콘 저장 -&gt; utfmb4</li>
+</ul>
+<pre><code class="hljs css language-js">{
+    <span class="hljs-attr">charset</span>: <span class="hljs-string">'utf8md4'</span>,
+    <span class="hljs-attr">collate</span>: <span class="hljs-string">'utf8md4_general_ci'</span>
+}
+</code></pre>
+<ul>
+<li>db.sequelize.sync() =&gt; 노드랑 sequelize를 연결</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="1-1-노드에서-시퀄라이즈-사용"></a><a href="#1-1-노드에서-시퀄라이즈-사용" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1-1. 노드에서 시퀄라이즈 사용</h3>
+<ul>
+<li>modal 명은</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="db-설계"></a><a href="#db-설계" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>db 설계</h2>
+<ul>
+<li><p>단일: comment / hashtag / image / post / user (기본)</p></li>
+<li><p>모델이 두개이상 관련된 경우</p>
+<ul>
+<li>user + post =&gt; 사용자가 쓴 게시물</li>
+<li>user + comment =&gt; 사용자가 쓴 댓글</li>
+<li>post + hashtag =&gt; 게시글에 달린 해쉬태그</li>
+</ul></li>
+<li><p>같은 테이블 끼리 관계가 있는 경우</p>
+<ul>
+<li>user + user =&gt; 사용자가 사용자를 follow</li>
+</ul></li>
+<li><p>일대 다 관계</p>
+<ul>
+<li>user - post =&gt; 유저는 포스트를 여러개 쓸 수 있음</li>
+<li>post는 오직 하나의 user만 가짐</li>
+<li>user 테이블 - db.User.hasMany(db.Post);</li>
+<li>post 테이블 - db.Post.belongsTo(db.User);</li>
+</ul></li>
+</ul>
+<pre><code class="hljs css language-js">User.associate = <span class="hljs-function"><span class="hljs-params">db</span> =&gt;</span> {
+    db.User.hasMany(db.Post);
+    db.User.hasMany(db.Comment);
+    db.User.belongsToMany(db.Post, { <span class="hljs-attr">through</span>: <span class="hljs-string">'Like'</span>, <span class="hljs-attr">as</span>: <span class="hljs-string">'Liked'</span>}); <span class="hljs-comment">// 다대 다 =&gt; 좋아요 </span>
+    db.User.belongsToMany(db.User, { <span class="hljs-attr">through</span>: <span class="hljs-string">'Follow'</span> <span class="hljs-keyword">as</span> <span class="hljs-string">'Followers'</span>, <span class="hljs-attr">foreignKey</span>: <span class="hljs-string">'fowllowingId'</span> })
+    <span class="hljs-comment">// 나를 팔로윙하고 있는 사람을 찾으려면 followingId를 먼저 찾고 그 다음 팔로워들을 찾아야하므로</span>
+    <span class="hljs-comment">// foreignKey =&gt; followingId</span>
+    <span class="hljs-comment">// 즉 현재 내 key가 followingId 가 되고 이걸 이용해 followers를 찾는다</span>
+    db.User.belongsToMany(db.User, { <span class="hljs-attr">through</span>: <span class="hljs-string">'Follow'</span> <span class="hljs-keyword">as</span> <span class="hljs-string">'Followings'</span>, <span class="hljs-attr">foreignKey</span>: <span class="hljs-string">'fowllowerId'</span> })
+    <span class="hljs-comment">// 내가 팔로윙하고 있는 사람을 찾으려면 내 followerId를 먼저 찾고 그 다음 팔로윙을 찾아야하므로</span>
+    <span class="hljs-comment">// foreignKey = follwerId</span>
+    <span class="hljs-comment">// 즉 현재 내 key가 follwerId가 되고 이걸 이용해 followings를 찾음</span>
+}
+
+Post.associate =<span class="hljs-function"><span class="hljs-params">db</span> =&gt;</span> {
+    db.Post.belongsTo(db.User);
+    db.Post.belongsToMany(db.Hashtag) <span class="hljs-comment">// 다대 다 관계</span>
+    db.Post.hasMany(db.Comment);
+    db.Post.hasMany(db.Image)
+    db.Post.belongsToMany(db.User, { <span class="hljs-attr">through</span>: <span class="hljs-string">'Like'</span>, <span class="hljs-keyword">as</span> <span class="hljs-string">'Likers'</span> }) <span class="hljs-comment">// 다대 다 =&gt; 좋아요</span>
+    db.Post.belongsTo(db.Post, { <span class="hljs-attr">as</span>: <span class="hljs-string">'Retweet'</span> }) <span class="hljs-comment">// 리트윗 하나의 원본 트윗은 여러개의 리트윗을 가질 수 있음</span>
+    
+}
+
+Comment.associate = <span class="hljs-function"><span class="hljs-params">db</span> =&gt;</span> {
+    db.Comment.belongsTo(db.User);
+    db.Comment.belongsTo(db.Post)
+}
+
+Image.associate = <span class="hljs-function"><span class="hljs-params">db</span> =&gt;</span> {
+    db.Image.belongsTo(db.Post);
+}
+
+Hashtag.associate db =&gt; {
+    db.hashtag.belongsToMany(db.Post)
+    <span class="hljs-comment">// 해쉬태그는 태그 하나가 여러개의 게시글도 가지면서</span>
+    <span class="hljs-comment">// 게시글이 여러개의 태그를 가질 수 있음</span>
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="belongsto-vs-hasmany"></a><a href="#belongsto-vs-hasmany" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>belongsTo vs hasMany</h2>
+<ul>
+<li>hasMany는 딱히 기능이 없음</li>
+<li>belongsTo는 연결된 모델의 id값을 가진 가상의 컬럼이 생성된다</li>
+<li>db.Comment.belongsTo(db.User) =&gt; Comment 모델에 UserId 라는 컬럼 생김</li>
+<li>db.Comment.belongsTo(db.Post) =&gt; Comment 모델에 PostId라는 컬럼 생김</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="일대일-관계-hasone"></a><a href="#일대일-관계-hasone" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>일대일 관계 hasOne</h2>
+<ul>
+<li>User - UserInfo</li>
+<li>사용자와 그 사용자의 데이터는 일대일 관계임</li>
+<li>오직 하나로만 연결되어 있다.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="다대다-관계-belongstomany"></a><a href="#다대다-관계-belongstomany" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>다대다 관계 belongsToMany</h2>
+<p><img src="https://user-images.githubusercontent.com/29701385/106023858-8bec0480-610a-11eb-9e8e-efa1ef0c6166.png" alt=""></p>
+<ul>
+<li><p>어쩔 수 없이 중간 테이블이 하나 생성된다</p></li>
+<li><p>중간 테이블이 있어야 검색이 가능해지므로</p></li>
+<li><p>through를 통해 중간 테이블의 이름을 변경할 수 있다.</p>
+<ul>
+<li>예를들어 User 와 Post라면 default로 UserPost가 생김</li>
+<li>좋아요라고 명확하게 알수 없고 헷갈리므로 { through: 'like'}</li>
+</ul></li>
+<li><p>as 사용하는 이유</p>
+<ul>
+<li>as를 이용하여 속해있는 데이터 한번에 가져올 수 있음</li>
+<li>belongsTo로 자동으로 생기는 id의 이름을 변경할 수 있다.</li>
+<li>db.Post.belongsTo(db.Post, { as: 'Retweet' })</li>
+<li>Post 모델 안에 PostId 컬럼이 생기면 이상하므로 RetweetId로 변경</li>
+<li><img src="https://user-images.githubusercontent.com/29701385/106028257-10d91d00-610f-11eb-8f4e-238e9a6cc0d7.png" alt=""></li>
+</ul></li>
+</ul>
+<ul>
+<li>같은 테이블끼리 다대 다 가능(유저가 유저 팔로우)
+<ul>
+<li>역시나 중간 테이블이 생긴다.</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="foreignkey"></a><a href="#foreignkey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>foreignKey</h2>
+<ul>
+<li>다대 다 관계에서 테이블 명이 다른 경우는 컬럼명이 UserId / PostId 처럼 구분이 됌</li>
+<li>같은 테이블에서 다대 다 관계인 경우는 중간테이블의 컬럼 명이 같을 수 없으므로 foreignKey를 이용하여
+변경해주어야한다.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="bycrypt"></a><a href="#bycrypt" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>bycrypt</h2>
+<ul>
+<li>비밀번호 암호화할때사용</li>
+<li>옵션은 12 -&gt; 너무 길면 오래걸림</li>
+<li>1초정도 걸리는 숫자로 정해주는 것이 좋다.</li>
+<li>비동기 이므로 async 써줘야한다.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="에러는-next로-한방에-처리"></a><a href="#에러는-next로-한방에-처리" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>에러는 next로 한방에 처리</h2>
+<pre><code class="hljs css language-js">router.post(<span class="hljs-string">'/'</span>, <span class="hljs-keyword">async</span> (req, res, next) =&gt; {
+    <span class="hljs-keyword">try</span>{
+
+    }<span class="hljs-keyword">catch</span>(err){
+        <span class="hljs-built_in">console</span>.log(err)
+        next(err)
+    }
+})
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="cors"></a><a href="#cors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CORS</h2>
+<ul>
+<li>브라우저에서 다른 도메인 서버로 요청했을 경우 발생</li>
+<li>프론트 서버에서 백엔드 서버로 보낼때는 cors가 안생긴다 -&gt; 브라우저에서 서버로 요청시에만 발생</li>
+<li>해결. 서버에서 헤더에 Access-Control-Allow-Origin을 설정해준다.</li>
+<li>해결. 모든 요청에 대해서 허용해버리면 해커가 서버로 바로 데이터 전송할 수 있으므로 특정 도메인만 설정해준다.</li>
+</ul>
+<pre><code class="hljs css language-js"> <span class="hljs-comment">// 방법1: 라우터에서 설정</span>
+ res.setHeader(<span class="hljs-string">'Access-Control-Allow-Origin'</span>, <span class="hljs-string">'*'</span>) <span class="hljs-comment">// http://localhost:3000</span>
+ res.status(<span class="hljs-number">200</span>).send(<span class="hljs-string">'ok'</span>)
+
+<span class="hljs-comment">// 방법 2: cors()</span>
+app.use(cors({
+    <span class="hljs-attr">origin</span>: <span class="hljs-string">'http://nodebird.com'</span>,
+    <span class="hljs-attr">credential</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// default 값은 false임 =&gt; </span>
+}))
+</code></pre>
+<ul>
+<li>프록시 방식
+<ul>
+<li>브라우저(3000)에서 같은 도메인의 프론트 서버(3000)로 요청 -&gt; 프론트서버(3000)에서 다른도메인의 백엔드 서버(3060)로 요청</li>
+<li>서버에서 서버로 전송하는건 문제 없음</li>
+<li>응답할때도 백엔드 서버에서 프론트서버로 먼저보내고 브라우저로 보낸다</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="passport"></a><a href="#passport" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>passport</h2>
+<ul>
+<li>로그인 관련된것을 한번에 처리</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="미들웨어-확장"></a><a href="#미들웨어-확장" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>미들웨어 확장</h3>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// 적용전</span>
+<span class="hljs-comment">// next()를 쓸수가 없다.</span>
+router.post(<span class="hljs-string">'/login'</span>, passport.authenticate(<span class="hljs-string">'local'</span>, (err, user, info) =&gt; {
+    <span class="hljs-keyword">if</span>(err){
+        <span class="hljs-built_in">console</span>.error(err);
+        next(err)
+    }
+})
+
+<span class="hljs-comment">// 적용후 </span>
+router.post(<span class="hljs-string">'/login'</span>, (req, res, next) =&gt; {
+    passport.authenticate(<span class="hljs-string">'local'</span>, (err, user, info) =&gt; {
+        <span class="hljs-keyword">if</span>(err){
+            <span class="hljs-built_in">console</span>.error(err);
+            next(err)
+        }
+    })(req, res, next);
+})
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="passport--쿠키와-세션"></a><a href="#passport--쿠키와-세션" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>passport + 쿠키와 세션</h2>
+<ul>
+<li><p>쿠키 &amp; 세션 원리</p>
+<ul>
+<li>로그인을 하면 브라우저랑 서버가 같은 정보를 가지고 있어야하는데 브라우저는 누구나 접속가능하므로 해킹에 취약하다</li>
+<li>유저정보를 브라우저에 보낼 수 없으므로 (비밀번호 등) 랜덤한 문자열을 쿠키에 담아서 보내준다.</li>
+<li>서버는 랜덤한 문자열과 유저정보를 묶어서 세션으로 가지고 있는다.</li>
+<li>브라우저가 api 요청할때 쿠키에 랜덤한 문자열을 가지고 있으면 서버 세션에서 랜덤 문자열로 원래 유저 정보로 복원하여 누군지 알 수 있음</li>
+</ul></li>
+<li><p>passport</p>
+<ul>
+<li>passport 사용하면 쿠키에 랜덤한 문자열 자동으로 담아준다. (res.setHeader('Cookie', 'fewfwcewcw))</li>
+<li>서버는 모든 유저정보를 다 가지고 있는 것이 아니라 랜덤한 문자열과 매칭되는 id 값만 가지고 있음</li>
+<li>유저 정보는 시간이 지날수록 무거워지므로 데이터를 다 가지고 있으면 메모리가 심하게 낭비(댓글수, 결제정보 등등)</li>
+<li>req.login(user)
+<ul>
+<li>serializeUser() =&gt; 유저 정보중에서 쿠키의 랜덤 문자열과 묶어줄 id값만 남겨준다.</li>
+<li>deserializeUser() =&gt; id값으로 유저정보 찾아서 복원한다.</li>
+</ul></li>
+</ul></li>
+<li><p>나중에는 세션 저장용 db로 redis를 사용한다.</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="routereplace"></a><a href="#routereplace" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Route.replace()</h2>
+<ul>
+<li>뒤로가기 했을때 그 페이지의 기록을 지우고 싶은 경우 사용한다.</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#제로초-강의">제로초 강의</a><ul class="toc-headings"><li><a href="#리덕스-사가">리덕스 사가</a></li><li><a href="#immer">immer</a></li><li><a href="#성능-최적화">성능 최적화</a></li><li><a href="#facker">facker</a></li><li><a href="#무한스크롤">무한스크롤</a></li><li><a href="#무한스크롤-scroll-이벤트시-requst-한번만-요청하기">무한스크롤 scroll 이벤트시, requst 한번만 요청하기</a></li><li><a href="#react-verturelize">react-verturelize</a></li><li><a href="#서버와-프론트를-나누는-이유">서버와 프론트를 나누는 이유</a></li><li><a href="#노드는-서버가-아니다">노드는 서버가 아니다.</a></li><li><a href="#rest-api">REST API</a></li></ul></li><li><a href="#mysql2">Mysql2</a></li><li><a href="#시퀄라이즈">시퀄라이즈</a><ul class="toc-headings"><li><a href="#1-1-노드에서-시퀄라이즈-사용">1-1. 노드에서 시퀄라이즈 사용</a></li></ul></li><li><a href="#db-설계">db 설계</a></li><li><a href="#belongsto-vs-hasmany">belongsTo vs hasMany</a></li><li><a href="#일대일-관계-hasone">일대일 관계 hasOne</a></li><li><a href="#다대다-관계-belongstomany">다대다 관계 belongsToMany</a></li><li><a href="#foreignkey">foreignKey</a></li><li><a href="#bycrypt">bycrypt</a></li><li><a href="#에러는-next로-한방에-처리">에러는 next로 한방에 처리</a></li><li><a href="#cors">CORS</a></li><li><a href="#passport">passport</a><ul class="toc-headings"><li><a href="#미들웨어-확장">미들웨어 확장</a></li></ul></li><li><a href="#passport--쿠키와-세션">passport + 쿠키와 세션</a></li><li><a href="#routereplace">Route.replace()</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="TIL: TODAY I LEARN" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 KyungYoon Ha</section></footer></div></body></html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>※ Custom Hooks로 Form inputs 관리하기 · TIL: TODAY I LEARN</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 1. 🎞 동작"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="※ Custom Hooks로 Form inputs 관리하기 · TIL: TODAY I LEARN"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kyungyoonha.github.io/"/><meta property="og:description" content="## 1. 🎞 동작"/><meta property="og:image" content="https://kyungyoonha.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://kyungyoonha.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://kyungyoonha.github.io/blog/atom.xml" title="TIL: TODAY I LEARN Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://kyungyoonha.github.io/blog/feed.xml" title="TIL: TODAY I LEARN Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="TIL: TODAY I LEARN"/><h2 class="headerTitleWithLogo">TIL: TODAY I LEARN</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/project/devpedia/devpedia_0" target="_self">Project</a></li><li class=""><a href="/docs/javascript/javascript_1" target="_self">TIL</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>왓챠피디아 제로</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">왓챠피디아 제로</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_0">※ 소개</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/project/devpedia/devpedia_1">※ Custom Hooks로 Form inputs 관리하기</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_2">※ 엑세스 토큰 만료시, 리프레시 토큰으로 엑세스 토큰 얻기</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_3">※ 마우스 따라다니는 평점 별 컴포넌트 만들기</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">채식한입</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/project/devtarian/devtarian_0">※ 소개</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">※ Custom Hooks로 Form inputs 관리하기</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="1--동작"></a><a href="#1--동작" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. 🎞 동작</h2>
+<p><img src="https://user-images.githubusercontent.com/29701385/106356341-4a459e80-6342-11eb-8b97-f2f1eb117dfe.gif" alt=""></p>
+<h2><a class="anchor" aria-hidden="true" id="2-사용-목적"></a><a href="#2-사용-목적" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. 🍳사용 목적</h2>
+<ul>
+<li>라이브러리 도움 없이 Form Inputs 관리</li>
+<li>타이핑을 할 때마다 Input Validate 체크</li>
+<li>Custom 에러 메시지</li>
+<li>제출시 필수 항목 체크 및 에러 메세지</li>
+<li>컴포넌트 최적화 - 수정하고 있는 inputs 을 제외하고 다른 컴포넌트들은 리렌더링 되지 않도록 한다.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="3--방법"></a><a href="#3--방법" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. ⚙ 방법</h2>
+<h4><a class="anchor" aria-hidden="true" id="3-1-hooksuseinputsjs"></a><a href="#3-1-hooksuseinputsjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3-1 Hooks/useInputs.js</h4>
+<ul>
+<li>onChange, onSumit, onSubmitFile 함수는 props로 넘겨줘야 하므로 useCallback을 사용하여 최적화 하였다.</li>
+<li>file 은 formData에 담아서 서버에 전달해야하므로 onSumitFile을 따로 만들어주었다.</li>
+</ul>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> useInputs = <span class="hljs-function">(<span class="hljs-params">initialValue</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> [inputs, setInputs] = useState(initialValue);
+    <span class="hljs-keyword">const</span> [errors, setErrors] = useState([]);
+
+    <span class="hljs-keyword">const</span> onChange = useCallback(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> { name, value, type, files } = e.target;
+        
+        type === <span class="hljs-string">"file"</span>
+            ? setInputs(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> ({ ...state, [name]: files[<span class="hljs-number">0</span>] }));
+            : setInputs(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> ({ ...state, [name]: value }));
+
+        <span class="hljs-keyword">const</span> error = validate(name, value);
+        setErrors(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> ({ ...state, [name]: error }));
+
+    }, []);
+
+    <span class="hljs-keyword">const</span> onSubmit = useCallback(<span class="hljs-keyword">async</span> (pathname, data) =&gt; {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">let</span> { isValid, checkedErrors } = validateAll(data);
+            <span class="hljs-keyword">if</span> (!isValid) <span class="hljs-keyword">return</span> setErrors(checkedErrors);
+
+            <span class="hljs-keyword">await</span> api.post(pathname, data);
+        } <span class="hljs-keyword">catch</span> (err) {
+            <span class="hljs-built_in">console</span>.error(err.response);
+        }
+    }, []);
+
+    <span class="hljs-comment">// 파일이 포함되어 있는 경우</span>
+    <span class="hljs-keyword">const</span> onSubmitFile = useCallback(<span class="hljs-keyword">async</span> (pathname, data, reqFileName) =&gt; {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">let</span> { isValid, checkedErrors } = validateAll(data);
+            <span class="hljs-keyword">if</span> (!isValid) <span class="hljs-keyword">return</span> setErrors(checkedErrors);
+
+            <span class="hljs-keyword">let</span> { file, ...body } = data;
+            <span class="hljs-keyword">let</span> formData = <span class="hljs-keyword">new</span> FormData();
+
+            formData.append(reqFileName, file);
+            formData.append(<span class="hljs-string">"body"</span>, <span class="hljs-keyword">new</span> Blob([<span class="hljs-built_in">JSON</span>.stringify(body)], { <span class="hljs-attr">type</span>: <span class="hljs-string">"application/json"</span> }));
+
+            <span class="hljs-keyword">await</span> api.post(pathname, formData);
+        } <span class="hljs-keyword">catch</span> (err) {
+            <span class="hljs-built_in">console</span>.error(err.response);
+        }
+    }, []);
+
+    <span class="hljs-keyword">return</span> { inputs, setInputs, errors, setErrors, onChange, onSubmit, onSubmitFile };
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="3-2-utilsvalidatejs"></a><a href="#3-2-utilsvalidatejs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3-2 utils/validate.js</h4>
+<ul>
+<li>switch case문으로 name값 마다 원하는 에러 메시지 출력</li>
+<li>정규식 이용</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> validate = <span class="hljs-function">(<span class="hljs-params">name, value</span>) =&gt;</span> {
+    
+    <span class="hljs-keyword">switch</span> (name) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"name"</span>:
+            <span class="hljs-keyword">return</span> value.length &lt;= <span class="hljs-number">1</span> &amp;&amp; <span class="hljs-string">"이름을 입력해주세요"</span>;
+
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"password"</span>:
+            <span class="hljs-keyword">return</span> value.length &lt;= <span class="hljs-number">3</span> &amp;&amp; <span class="hljs-string">"비밀번호를 3자리 이상 입력해주세요"</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"email"</span>:
+            <span class="hljs-keyword">let</span> regExp = <span class="hljs-regexp">/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i</span>;
+            <span class="hljs-keyword">return</span> !regExp.test(value) &amp;&amp; <span class="hljs-string">"이메일 양식에 맞게 작성해주세요."</span>;
+
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"bookRate"</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"page"</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"runningTimeInMinutes"</span>:
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"totalAudience"</span>:
+            <span class="hljs-keyword">return</span> checkNumber(value) &amp;&amp; <span class="hljs-string">"숫자만 입력 가능합니다."</span>;
+
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span>;
+    }
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> checkNumber = <span class="hljs-function">(<span class="hljs-params">input</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> regexp = <span class="hljs-regexp">/^[0-9]*$/</span>;
+    <span class="hljs-keyword">return</span> !regexp.test(input) ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>;
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="3-3-사용예시"></a><a href="#3-3-사용예시" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3-3 사용예시</h4>
+<ul>
+<li>useInputs() 값중에서 필요한 값만 destructure해서 사용</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> PageParticipant = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> { inputs, errors, onChange, onSubmitFile } = useInputs(initialValue);
+
+    <span class="hljs-keyword">const</span> handleSubmit = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        onSubmitFile(<span class="hljs-string">"/admin/participants"</span>, inputs, <span class="hljs-string">"profile"</span>);
+    };
+
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">FormSection</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"인물 등록"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"row"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"col-4 d-flex flex-column"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">File</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"file"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{inputs.file}</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{onChange}</span> /&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"col-8"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Input</span>
+                        <span class="hljs-attr">title</span>=<span class="hljs-string">"이름"</span>
+                        <span class="hljs-attr">name</span>=<span class="hljs-string">"name"</span>
+                        <span class="hljs-attr">value</span>=<span class="hljs-string">{inputs.name}</span>
+                        <span class="hljs-attr">onChange</span>=<span class="hljs-string">{onChange}</span>
+                        <span class="hljs-attr">error</span>=<span class="hljs-string">{errors.name}</span>
+                    /&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Input</span>
+                        <span class="hljs-attr">title</span>=<span class="hljs-string">"직업"</span>
+                        <span class="hljs-attr">name</span>=<span class="hljs-string">"job"</span>
+                        <span class="hljs-attr">value</span>=<span class="hljs-string">{inputs.job}</span>
+                        <span class="hljs-attr">onChange</span>=<span class="hljs-string">{onChange}</span>
+                        <span class="hljs-attr">error</span>=<span class="hljs-string">{errors.job}</span>
+                    /&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Textarea</span>
+                        <span class="hljs-attr">title</span>=<span class="hljs-string">"설명"</span>
+                        <span class="hljs-attr">name</span>=<span class="hljs-string">"description"</span>
+                        <span class="hljs-attr">value</span>=<span class="hljs-string">{inputs.description}</span>
+                        <span class="hljs-attr">onChange</span>=<span class="hljs-string">{onChange}</span>
+                        <span class="hljs-attr">error</span>=<span class="hljs-string">{errors.description}</span>
+                        <span class="hljs-attr">rows</span>=<span class="hljs-string">"3"</span>
+                    /&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span>
+                <span class="hljs-attr">type</span>=<span class="hljs-string">"button"</span>
+                <span class="hljs-attr">className</span>=<span class="hljs-string">"btn btn-primary"</span>
+                <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleSubmit}</span>
+            &gt;</span>
+                Submit
+            <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">FormSection</span>&gt;</span></span>
+    );
+};
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="3-4-inputsjs"></a><a href="#3-4-inputsjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3-4 Inputs.js</h4>
+<ul>
+<li>최적화를 위해 React.memo() 사용</li>
+<li>props가 바뀌지 않는한 리렌더링 되지 않는다.</li>
+<li>props 중에서 함수는 useCallback으로 감싸줘야 리렌더링 되지 않는다.</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+
+<span class="hljs-keyword">const</span> Input = ({ 
+    className, title, name, value, onChange, error, disabled, children,
+}) =&gt; {
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">{</span>`<span class="hljs-attr">form-group</span> ${<span class="hljs-attr">className</span>}`}&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>{title}<span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"input-group"</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">input</span>
+                    <span class="hljs-attr">name</span>=<span class="hljs-string">{name}</span>
+                    <span class="hljs-attr">value</span>=<span class="hljs-string">{value}</span>
+                    <span class="hljs-attr">onChange</span>=<span class="hljs-string">{onChange}</span>
+                    <span class="hljs-attr">className</span>=<span class="hljs-string">{</span>`<span class="hljs-attr">form-control</span> ${<span class="hljs-attr">error</span> &amp;&amp; "<span class="hljs-attr">is-invalid</span>"}`}
+                    <span class="hljs-attr">disabled</span>=<span class="hljs-string">{disabled}</span>
+                /&gt;</span>
+                {children &amp;&amp; (
+                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"input-group-append"</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"input-group-text"</span>&gt;</span>{children}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                )}
+
+                {error &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"invalid-feedback"</span>&gt;</span>{error}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    );
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> React.memo(Input);
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="3-5-제출-버튼-클릭시"></a><a href="#3-5-제출-버튼-클릭시" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3-5 제출 버튼 클릭시</h4>
+<ul>
+<li>validateAll() 함수로 한번더 validate 체크하고 빈값이 있으면 에러메시지 출력해준다.</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> validateAll = <span class="hljs-function">(<span class="hljs-params">inputs</span>) =&gt;</span> {
+    <span class="hljs-keyword">let</span> isValid = <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">let</span> checkedErrors = {};
+
+    <span class="hljs-built_in">Object</span>.keys(inputs).forEach(<span class="hljs-function">(<span class="hljs-params">key</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (key !== <span class="hljs-string">"description"</span> &amp;&amp; key !== <span class="hljs-string">"job"</span>) {
+            <span class="hljs-keyword">let</span> errorMessage = validate(key, inputs[key]);
+            <span class="hljs-keyword">if</span> (errorMessage) {
+                checkedErrors[key] = errorMessage;
+            }
+        }
+    });
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.keys(checkedErrors).length === <span class="hljs-number">0</span>) {
+        isValid = <span class="hljs-literal">true</span>;
+    }
+
+    <span class="hljs-keyword">return</span> { isValid, checkedErrors };
+};
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="4-개선할-점"></a><a href="#4-개선할-점" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. 개선할 점</h2>
+<ul>
+<li>위에 코드는 <form> 태그 안에 작성하지 않았는데 <form> 태그로 감싸주고 제출버튼의 타입을 sumit으로 해주면 엔터를 눌러도 제출이 가능하다.</li>
+<li>제출시 빈값을 체크하기 위해 validateAll()을 만들어서 관리하고 있는데 그냥 input 속성중에서 required를 넣어주는 것이 더 간편할 것 같다.</li>
+<li>form 데이터는 굳이 리덕스로 전역관리할 필요가 없을 것 같다는 생각이 들었으나 redux로 관리하면 서버에서 내려오는 validate 에러 또한 쉽게 컴포넌트로 내려줄 수 있을것 같다 redux-form이라는 라이브러리 documemnt도 살펴 봐야겠다.</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/project/devpedia/devpedia_0"><span class="arrow-prev">← </span><span>※ 소개</span></a><a class="docs-next button" href="/docs/project/devpedia/devpedia_2"><span>※ 엑세스 토큰 만료시, 리프레시 토큰으로 엑세스 토큰 얻기</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1--동작">1. 🎞 동작</a></li><li><a href="#2-사용-목적">2. 🍳사용 목적</a></li><li><a href="#3--방법">3. ⚙ 방법</a></li><li><a href="#4-개선할-점">4. 개선할 점</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="TIL: TODAY I LEARN" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 KyungYoon Ha</section></footer></div></body></html>

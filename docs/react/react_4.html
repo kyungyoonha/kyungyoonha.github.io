@@ -1,0 +1,148 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>※ 리액트 리렌더링 최적화 방법 · TIL: TODAY I LEARN</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 1. 변하지 않는 상수 데이터"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="※ 리액트 리렌더링 최적화 방법 · TIL: TODAY I LEARN"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kyungyoonha.github.io/"/><meta property="og:description" content="## 1. 변하지 않는 상수 데이터"/><meta property="og:image" content="https://kyungyoonha.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://kyungyoonha.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://kyungyoonha.github.io/blog/atom.xml" title="TIL: TODAY I LEARN Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://kyungyoonha.github.io/blog/feed.xml" title="TIL: TODAY I LEARN Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="TIL: TODAY I LEARN"/><h2 class="headerTitleWithLogo">TIL: TODAY I LEARN</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/project/devpedia/devpedia_0" target="_self">Project</a></li><li class="siteNavGroupActive"><a href="/docs/javascript/javascript_1" target="_self">TIL</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>react</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">react</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/react/react_0">※ JSX</a></li><li class="navListItem"><a class="navItem" href="/docs/react/react_1">※ Component</a></li><li class="navListItem"><a class="navItem" href="/docs/react/react_2">※ 컴포넌트의 각 생명주기 &amp; 호출 시기</a></li><li class="navListItem"><a class="navItem" href="/docs/react/react_3">※ 리액트는 라이브러리인가, 프레임워크인가 ?</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/react/react_4">※ 리액트 리렌더링 최적화 방법</a></li><li class="navListItem"><a class="navItem" href="/docs/react/react_5">※ 리액트 Hooks</a></li><li class="navListItem"><a class="navItem" href="/docs/react/react_6">※ contextAPI</a></li><li class="navListItem"><a class="navItem" href="/docs/react/react_7">※ Ducks 패턴</a></li><li class="navListItem"><a class="navItem" href="/docs/react/react_8">※ Immer 라이브러리</a></li><li class="navListItem"><a class="navItem" href="/docs/react/react_9">※ 환경변수</a></li><li class="navListItem"><a class="navItem" href="/docs/react/react_10">※ 웹 성능 최적화</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Javascript</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/javascript/javascript_1">※ 자료구조</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript/javascript_2">※ 변수타입 (기본형 / 참조형)</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript/javascript_3">※ Async Await</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript/javascript_4">※ 콜백함수 &amp; 익명함수</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript/javascript_5">※ AJAX란</a></li><li class="navListItem"><a class="navItem" href="/docs/javascript/javascript_6">※ Object.entries(obj)</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">web</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/web/web_1">※ Access Token / Refresh Token</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_2">※ REAL DOM (VS) VIRTUAL DOM</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_3">※ HTTP vs HTTPs &amp; https 서버 인증서 암호화 과정</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_4">※ HTTP 통신 vs Socket 통신</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_5">※ Asynchronous</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_6">※ 웹팩이란 무엇인가?</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_7">※ 서버API 통신 &amp; REST API</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_8">※ 크로스도메인 &amp; CORS</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_9">※ 브라우저 캐시</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_10">※ 번들러</a></li><li class="navListItem"><a class="navItem" href="/docs/web/web_11">※ ESLint</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">css</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/css/css_1">※ Transform</a></li><li class="navListItem"><a class="navItem" href="/docs/css/css_2">※ 벤더 프리픽스란?</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">git</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/git/git_1">git 명령어</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">node</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/node/node_0">※ Node.js 교과서</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">※ 리액트 리렌더링 최적화 방법</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="1-변하지-않는-상수-데이터"></a><a href="#1-변하지-않는-상수-데이터" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. 변하지 않는 상수 데이터</h2>
+<ul>
+<li>렌더링 단계에서 생성하는 것이 아니라 정적으로 생성해준다.</li>
+<li>데이터로 분리할 수 있는 값은 따로 상수처럼 사용해준다.</li>
+</ul>
+<p><img src="/img/react/react_4_1.png" alt="img"></p>
+<h2><a class="anchor" aria-hidden="true" id="2-reactmemo"></a><a href="#2-reactmemo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. React.Memo()</h2>
+<ul>
+<li>부모에게 리렌더링이 일어나도 자식은 리렌더링이 일어나지 않도록 해준다.</li>
+<li>자식: export Child({ prop1, prop2 }) =&gt; { return <div>Child </div> }</li>
+<li>부모 컴포넌트에서 오는 prop1과 prop2가 변경되지 않았다면 자식은 리랜더링 x</li>
+<li>이때, prop1이 이벤트 핸들 함수라면, useCallback으로 처리해줘야한다.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="3-usememo"></a><a href="#3-usememo" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. useMemo</h2>
+<ul>
+<li>렌더링 될때마다 외부함수를 이용한 계산을 방지해준다.</li>
+<li>Dependecy가 변경되었을 때만 값을 다시 계산하도록 기억한다.</li>
+<li>사용. 특정 props나 특정 state가 변경 될때만 다시 계산하는 경우</li>
+<li>사용. 함수값 계산 프로세스가 에너지 소모가 많은 경우</li>
+<li>사용x. 클래스 컴포넌트에서는 사용하지 않는다. (render부분만 리랜더링 됌)</li>
+<li>사용x. 해당 함수를 scope 밖으로 옮길 수 있는 경우</li>
+<li>예시. const result = useMemo(func(value), [value])</li>
+<li>예시. 컴포넌트가 렌더링 되더라도 value값이 바뀌지 않았다면</li>
+<li>예시. result 값은 외부 함수로 새로 구해지지 않고 기존 값을 재사용</li>
+</ul>
+<table>
+<thead>
+<tr><th>useMemo() 사용 x</th><th>useMemo() 사용 o</th></tr>
+</thead>
+<tbody>
+<tr><td><img src="/img/react/react_4_2_1.png" alt="img"></td><td><img src="/img/react/react_4_2_2.png" alt="img"></td></tr>
+<tr><td>렌더링 될 때마다 valueComputedFromProp 함수가 매번 계산되고 있음</td><td>렌더링이 되더라도 props1 값이 바뀐 경우에만 함수가 계산됌</td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="4-usecallback"></a><a href="#4-usecallback" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. useCallback</h2>
+<ul>
+<li>함수형 컴포넌트에서 렌더링 될때마다 함수가 매번 생성되는 것을 방지해준다.</li>
+<li>[deps] 안에 참조값들이 변했을 때만 함수를 재생성 하고 아니면 그대로 사용</li>
+<li>자식한테 props 값으로 넘겨주는 이벤트 핸들 함수들은 useCallback처리 해야 좋다.</li>
+</ul>
+<table>
+<thead>
+<tr><th>useCallback() 사용 x</th><th>useCallback() 사용 o</th></tr>
+</thead>
+<tbody>
+<tr><td><img src="/img/react/react_4_3_1.png" alt="img"></td><td><img src="/img/react/react_4_3_2.png" alt="img"></td></tr>
+<tr><td>렌더링 될때마다 expressiveFunction이 재생성된다</td><td>Cb1값이 변경된 경우에만 expressiveFunction이 재생성 된다.</td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="5-useselector-사용시"></a><a href="#5-useselector-사용시" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5. useSelector 사용시</h2>
+<ul>
+<li>State를 조회할 때 객체를 생성하면 하나의 값만 수정해도 다른 값도 재선언된다.</li>
+<li>아래 예제에서는 count값만 수정해도 prevCount 와 관련된 것도 전부 랜더링됌</li>
+</ul>
+<pre><code class="hljs css language-jsx"><span class="hljs-keyword">const</span> { count, prevCount } = useSelector(
+    <span class="hljs-function">(<span class="hljs-params">stat: (RootState</span>) =&gt;</span> {
+        <span class="hljs-attr">count</span>: state.countReducer.count,
+        <span class="hljs-attr">prevCount</span>: state.countReducer.prevCount,
+    })
+);
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="5-1-독립선언"></a><a href="#5-1-독립선언" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5-1. 독립선언</h3>
+<pre><code class="hljs css language-JSX"><span class="hljs-keyword">const</span> count = useSelector(state:<span class="hljs-function"><span class="hljs-params">RootState</span> =&gt;</span> state.countReducer.count)
+<span class="hljs-keyword">const</span> prevCount = useSelector(state:<span class="hljs-function"><span class="hljs-params">RootState</span> =&gt;</span> state.countReducer.prevCount)
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="5-2-equalityfn"></a><a href="#5-2-equalityfn" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5-2. equalityFn</h3>
+<pre><code class="hljs css language-JSX"><span class="hljs-keyword">const</span> { count, prevCount } = useSelector(stat: <span class="hljs-function"><span class="hljs-params">RootState</span> =&gt;</span> ({
+    <span class="hljs-attr">count</span>: state.countReducer.count,
+    <span class="hljs-attr">prevCount</span>: state.countReducer.prevCount,
+}), (prev, next) =&gt; {
+    <span class="hljs-keyword">return</span> prev.count === next.count &amp;&amp; prev.prevCount === next.prevCount
+});
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="5-3-shallowequal"></a><a href="#5-3-shallowequal" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5-3. shallowEqual</h3>
+<pre><code class="hljs css language-JSX"><span class="hljs-keyword">const</span> { count, prevCount } = useSelector(stat: <span class="hljs-function"><span class="hljs-params">RootState</span> =&gt;</span> ({
+    <span class="hljs-attr">count</span>: state.countReducer.count,
+    <span class="hljs-attr">prevCount</span>: state.countReducer.prevCount,
+}), shallowEquel)
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="6-reactpurecomponent-또는-sholudcomponentupdate"></a><a href="#6-reactpurecomponent-또는-sholudcomponentupdate" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>6. React.PureComponent 또는 sholudComponentUpdate</h2>
+<ul>
+<li>클래스형 컴포넌트 에서는 souldComponentUpdate를 통해 값이 변했을 경우에만 업데이트를 할 수 있다. PureComponent는 shouldComponentUpdate기능이 내장되어 있음</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="7-출처"></a><a href="#7-출처" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>7. 출처</h2>
+<ul>
+<li><a href="https://im-developer.tistory.com/198">https://im-developer.tistory.com/198</a></li>
+<li><a href="https://medium.com/vingle-tech-blog/react-%EB%A0%8C%EB%8D%94%EB%A7%81-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f255d6569849">https://medium.com/vingle-tech-blog/react-%EB%A0%8C%EB%8D%94%EB%A7%81-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f255d6569849</a></li>
+<li><a href="https://blog.woolta.com/categories/1/posts/200">https://blog.woolta.com/categories/1/posts/200</a></li>
+<li><a href="https://blog.bitsrc.io/10-ways-to-optimize-your-react-apps-performance-e5e437c9abce">https://blog.bitsrc.io/10-ways-to-optimize-your-react-apps-performance-e5e437c9abce</a></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/react/react_3"><span class="arrow-prev">← </span><span>※ 리액트는 라이브러리인가, 프레임워크인가 ?</span></a><a class="docs-next button" href="/docs/react/react_5"><span>※ 리액트 Hooks</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1-변하지-않는-상수-데이터">1. 변하지 않는 상수 데이터</a></li><li><a href="#2-reactmemo">2. React.Memo()</a></li><li><a href="#3-usememo">3. useMemo</a></li><li><a href="#4-usecallback">4. useCallback</a></li><li><a href="#5-useselector-사용시">5. useSelector 사용시</a><ul class="toc-headings"><li><a href="#5-1-독립선언">5-1. 독립선언</a></li><li><a href="#5-2-equalityfn">5-2. equalityFn</a></li><li><a href="#5-3-shallowequal">5-3. shallowEqual</a></li></ul></li><li><a href="#6-reactpurecomponent-또는-sholudcomponentupdate">6. React.PureComponent 또는 sholudComponentUpdate</a></li><li><a href="#7-출처">7. 출처</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="TIL: TODAY I LEARN" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 KyungYoon Ha</section></footer></div></body></html>
