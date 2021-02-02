@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>※ Card List Slick · TIL: TODAY I LEARN</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 1. 동작"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="※ Card List Slick · TIL: TODAY I LEARN"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kyungyoonha.github.io/"/><meta property="og:description" content="## 1. 동작"/><meta property="og:image" content="https://kyungyoonha.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://kyungyoonha.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://kyungyoonha.github.io/blog/atom.xml" title="TIL: TODAY I LEARN Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://kyungyoonha.github.io/blog/feed.xml" title="TIL: TODAY I LEARN Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="TIL: TODAY I LEARN"/><h2 class="headerTitleWithLogo">TIL: TODAY I LEARN</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/project/devpedia/devpedia_0" target="_self">Project</a></li><li class=""><a href="/docs/javascript/javascript_1" target="_self">TIL</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>왓챠피디아 제로</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">왓챠피디아 제로</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_0">※ 소개</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_1">※ Custom Hooks로 Form inputs 관리하기</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_2">※ 엑세스 토큰 만료시, 리프레시 토큰으로 엑세스 토큰 얻기</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_3">※ 마우스 따라다니는 평점 별 컴포넌트 만들기</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_4">※ 무한스크롤 1. Intersection Observer</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/project/devpedia/devpedia_5">※ Card List Slick</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">채식한입</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/project/devtarian/devtarian_0">※ 소개</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">※ Card List Slick</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="1-동작"></a><a href="#1-동작" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. 동작</h2>
+<h3><a class="anchor" aria-hidden="true" id="1-1-메인-페이지"></a><a href="#1-1-메인-페이지" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1-1 메인 페이지</h3>
+<table>
+<thead>
+<tr><th><img src="https://user-images.githubusercontent.com/29701385/106605948-d8b95a80-65a4-11eb-89ce-14d653a3d461.gif" alt="gif"></th></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="1-2-디테일-페이지"></a><a href="#1-2-디테일-페이지" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1-2 디테일 페이지</h3>
+<table>
+<thead>
+<tr><th><img src="https://user-images.githubusercontent.com/29701385/106606798-e28f8d80-65a5-11eb-88c5-bd0f18d847ac.gif" alt="gif"></th></tr>
+</thead>
+<tbody>
+<tr><td><img src="https://user-images.githubusercontent.com/29701385/106606809-e4f1e780-65a5-11eb-9053-e4677e999923.gif" alt="gif"></td></tr>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="2-문제-점"></a><a href="#2-문제-점" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. 문제 점</h2>
+<ul>
+<li>왓차 피디아라는 사이트를 처음 분석할 때 슬라이드형 컴포넌트가 여러 페이지에 많이 쓰이는 것을 보고 모든 페이지에서 공통으로 쓸 수 있는 컴포넌트를 만들어보겠다는 생각하였고 이 때문에 페이지마다 기능이 다른 슬라이드가 있음에도 불구하고 한 컴포넌트에 많은 기능을 넣게 되었다. 따라서 코드도 길어지고 넘겨주는 props 가 많아졌다. 다시보니 페이지 별로 나누어 만들었으면 좀더 깔끔한 컴포넌트가 만들어지지 않았을까 하는 생각이 든다.</li>
+<li>최근 제로초 강의에서 100줄 이상 넘으면 분리하는 것이 좋다는 강의를 보고나니 더 길어보인다.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="3-리팩토링"></a><a href="#3-리팩토링" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. 리팩토링</h2>
+<ul>
+<li>인물형 slick 컴포넌트 분리</li>
+<li>전체 데이터를 넘겨주고 CardListSlick 안에서 destructure하여 데이터 보여주기</li>
+<li>css 관련 props는 전부 styled-component로 분리</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="4-원리"></a><a href="#4-원리" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. 원리</h2>
+<ul>
+<li>children으로 그려지는 내부 컴포넌트의 전체 width를 이용하여 이동할 수 있는 width(leftWidth)를 구한다.</li>
+<li>오른쪽 버튼을 누를시 화면에 보여지는 컴포넌트 width(curWidth)만큼 이동</li>
+<li>남은 width(leftWidth)가 화면에 보여지는 width(curwidth)보다 작은 경우 제일 오른쪽으로 이동</li>
+<li>버튼 클릭시 api가 불러와지는 경우 fetchMore 여부에 따라서 페이지 이동을 결정한다.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="4-코드"></a><a href="#4-코드" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. 코드</h2>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// css는 제외</span>
+<span class="hljs-keyword">const</span> CardListSlick = ({
+    title,
+    description,
+    posterUrl,
+    count,
+    sizeHeader,
+    horizon,
+    userId,
+    fetchMore,
+    onClickfetch = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {},
+    <span class="hljs-attr">addComponent</span>: AddComponent,
+    children,
+}) =&gt; {
+    <span class="hljs-keyword">const</span> slider = useRef();
+    <span class="hljs-keyword">const</span> [scollCtrl, setScrollCtrl] = useState({
+        <span class="hljs-attr">leftWidth</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">slideWidth</span>: <span class="hljs-number">0</span>,
+    });
+    <span class="hljs-keyword">const</span> [buttonCtrl, setButtonCtrl] = useState({
+        <span class="hljs-attr">posX</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">left</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">right</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">show</span>: <span class="hljs-literal">true</span>,
+    });
+
+    useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">try</span> {
+            <span class="hljs-keyword">const</span> childNum = slider.current.children.length;
+            <span class="hljs-keyword">const</span> childWidth = slider.current.children[<span class="hljs-number">0</span>].clientWidth;
+            <span class="hljs-keyword">const</span> slideWidth = slider.current.offsetWidth;
+            <span class="hljs-keyword">const</span> curWidth = buttonCtrl.posX + slideWidth;
+            <span class="hljs-comment">// 인물형 슬라이드의 경우 children 안에 카드 컴포넌트를 3줄로 보여주므로</span>
+            <span class="hljs-comment">// 전체 width도 3분의 1로 나눠준다.</span>
+            <span class="hljs-keyword">const</span> childTotalWidth = horizon
+                ? <span class="hljs-built_in">Math</span>.ceil(childNum / <span class="hljs-number">3</span>) * childWidth
+                : childNum * childWidth;
+
+            <span class="hljs-comment">// 현재 넘긴 width를 제외하고 남은 width</span>
+            <span class="hljs-keyword">let</span> leftWidth = childTotalWidth - curWidth;
+            setScrollCtrl({ leftWidth, slideWidth });
+            setButtonCtrl(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> ({
+                ...state,
+                <span class="hljs-attr">right</span>: fetchMore || <span class="hljs-number">50</span> &lt; leftWidth,
+            }));
+        } <span class="hljs-keyword">catch</span> (err) {
+            <span class="hljs-built_in">console</span>.log(err);
+        }
+    }, [buttonCtrl.posX, horizon, fetchMore]);
+
+    <span class="hljs-keyword">const</span> handleClickButton = <span class="hljs-function">(<span class="hljs-params">type</span>) =&gt;</span> {
+        <span class="hljs-keyword">const</span> { leftWidth, slideWidth } = scollCtrl;
+
+        <span class="hljs-keyword">let</span> newPosX;
+        <span class="hljs-keyword">if</span> (type === <span class="hljs-string">"right"</span>) {
+            <span class="hljs-keyword">if</span> (leftWidth &gt; slideWidth || fetchMore) {
+                newPosX = buttonCtrl.posX + slideWidth;
+            } <span class="hljs-keyword">else</span> newPosX = buttonCtrl.posX + leftWidth;
+        } <span class="hljs-keyword">else</span> {
+            newPosX = buttonCtrl.posX &lt;= slideWidth
+                ? <span class="hljs-number">0</span>
+                : buttonCtrl.posX - slideWidth;
+        }
+        setButtonCtrl({
+            <span class="hljs-attr">posX</span>: newPosX,
+            <span class="hljs-attr">left</span>: newPosX &gt; <span class="hljs-number">0</span>,
+            <span class="hljs-attr">right</span>: fetchMore || <span class="hljs-number">50</span> &lt; leftWidth - slideWidth,
+        });
+    };
+
+    <span class="hljs-keyword">const</span> handleMouseOver = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">if</span> (!buttonCtrl.show) {
+            setButtonCtrl({ ...buttonCtrl, <span class="hljs-attr">show</span>: <span class="hljs-literal">true</span> });
+        }
+    };
+
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Wrapper</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Header</span> <span class="hljs-attr">size</span>=<span class="hljs-string">{sizeHeader}</span>&gt;</span>
+                {userId ? (
+                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"title-block"</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">a</span>
+                            <span class="hljs-attr">className</span>=<span class="hljs-string">"user-info"</span>
+                            <span class="hljs-attr">href</span>=<span class="hljs-string">{</span>`/<span class="hljs-attr">users</span>/${<span class="hljs-attr">userId</span>}`}
+                            <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span>
+                        &gt;</span>
+                            <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"user-img"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">{posterUrl}</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">""</span> /&gt;</span>
+                            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"infoWrapper"</span>&gt;</span>
+                                <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{title}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+                                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"titleBlock"</span>&gt;</span>
+                                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"title"</span>&gt;</span>{description}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                        <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"titleRight"</span>&gt;</span>{AddComponent}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                ) : (
+                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"titleBlock"</span>&gt;</span>
+                        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"title"</span>&gt;</span>
+                            {title}
+                            <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>{count}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+                        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+
+                        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"titleRight"</span>&gt;</span>{AddComponent}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                )}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Header</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">Content</span>
+                <span class="hljs-attr">onMouseOver</span>=<span class="hljs-string">{handleMouseOver}</span>
+                <span class="hljs-attr">onMouseLeave</span>=<span class="hljs-string">{()</span> =&gt;</span>
+                    setButtonCtrl({ ...buttonCtrl, show: false })
+                }
+            &gt;
+                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">"slickWrapper"</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>
+                        <span class="hljs-attr">className</span>=<span class="hljs-string">{</span>`<span class="hljs-attr">slickBlock</span> ${<span class="hljs-attr">horizon</span> &amp;&amp; "<span class="hljs-attr">horizon</span>"}`}
+                        <span class="hljs-attr">ref</span>=<span class="hljs-string">{slider}</span>
+                        <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span>
+                            <span class="hljs-attr">transform:</span> `<span class="hljs-attr">translateX</span>(<span class="hljs-attr">-</span>${<span class="hljs-attr">buttonCtrl.posX</span>}<span class="hljs-attr">px</span>)`,
+                        }}
+                    &gt;</span>
+                        {children}
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">ArrowButton</span>
+                        <span class="hljs-attr">type</span>=<span class="hljs-string">"left"</span>
+                        <span class="hljs-attr">show</span>=<span class="hljs-string">{buttonCtrl.show</span> &amp;&amp; <span class="hljs-attr">buttonCtrl.left</span>}
+                        <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> handleClickButton("left")}
+                    /&gt;
+                    <span class="hljs-tag">&lt;<span class="hljs-name">ArrowButton</span>
+                        <span class="hljs-attr">type</span>=<span class="hljs-string">"right"</span>
+                        <span class="hljs-attr">show</span>=<span class="hljs-string">{buttonCtrl.show</span> &amp;&amp; <span class="hljs-attr">buttonCtrl.right</span>}
+                        <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> {
+                            onClickfetch();
+                            handleClickButton("right");
+                        }}
+                    /&gt;
+                <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">Content</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Wrapper</span>&gt;</span></span>
+    );
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> CardListSlick;
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/project/devpedia/devpedia_4"><span class="arrow-prev">← </span><span>※ 무한스크롤 1. Intersection Observer</span></a><a class="docs-next button" href="/docs/project/devtarian/devtarian_0"><span>※ 소개</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1-동작">1. 동작</a><ul class="toc-headings"><li><a href="#1-1-메인-페이지">1-1 메인 페이지</a></li><li><a href="#1-2-디테일-페이지">1-2 디테일 페이지</a></li></ul></li><li><a href="#2-문제-점">2. 문제 점</a></li><li><a href="#3-리팩토링">3. 리팩토링</a></li><li><a href="#4-원리">4. 원리</a></li><li><a href="#4-코드">4. 코드</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="TIL: TODAY I LEARN" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 KyungYoon Ha</section></footer></div></body></html>

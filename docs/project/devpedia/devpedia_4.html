@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>※ 무한스크롤 1. Intersection Observer · TIL: TODAY I LEARN</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 1. 동작"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="※ 무한스크롤 1. Intersection Observer · TIL: TODAY I LEARN"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kyungyoonha.github.io/"/><meta property="og:description" content="## 1. 동작"/><meta property="og:image" content="https://kyungyoonha.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://kyungyoonha.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://kyungyoonha.github.io/blog/atom.xml" title="TIL: TODAY I LEARN Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://kyungyoonha.github.io/blog/feed.xml" title="TIL: TODAY I LEARN Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="TIL: TODAY I LEARN"/><h2 class="headerTitleWithLogo">TIL: TODAY I LEARN</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/project/devpedia/devpedia_0" target="_self">Project</a></li><li class=""><a href="/docs/javascript/javascript_1" target="_self">TIL</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>왓챠피디아 제로</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">왓챠피디아 제로</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_0">※ 소개</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_1">※ Custom Hooks로 Form inputs 관리하기</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_2">※ 엑세스 토큰 만료시, 리프레시 토큰으로 엑세스 토큰 얻기</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_3">※ 마우스 따라다니는 평점 별 컴포넌트 만들기</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/project/devpedia/devpedia_4">※ 무한스크롤 1. Intersection Observer</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_5">※ Card List Slick</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">채식한입</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/project/devtarian/devtarian_0">※ 소개</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">※ 무한스크롤 1. Intersection Observer</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="1-동작"></a><a href="#1-동작" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. 동작</h2>
+<h3><a class="anchor" aria-hidden="true" id="1-1-contentcontentid"></a><a href="#1-1-contentcontentid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1-1 content/{contentId}</h3>
+<table>
+<thead>
+<tr><th><img src="https://user-images.githubusercontent.com/29701385/106480721-0a6fea00-64ef-11eb-9b79-b0afcfb621c8.gif" alt="img"></th></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="1-2-detaildeckspageid"></a><a href="#1-2-detaildeckspageid" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1-2 detail/decks/{pageId}</h3>
+<table>
+<thead>
+<tr><th><img src="https://user-images.githubusercontent.com/29701385/106479745-ff688a00-64ed-11eb-8eeb-dbe07cf769a7.gif" alt="img"></th></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h3><a class="anchor" aria-hidden="true" id="1-3-usersuseridmoviesratings"></a><a href="#1-3-usersuseridmoviesratings" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1-3 /users/{userId}/movies/ratings</h3>
+<table>
+<thead>
+<tr><th><img src="https://user-images.githubusercontent.com/29701385/106481522-dd700700-64ef-11eb-89a1-a184cf0c443c.gif" alt="img"></th></tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<h2><a class="anchor" aria-hidden="true" id="2-설명"></a><a href="#2-설명" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. 설명</h2>
+<ul>
+<li>isFetching = true 일때 페이지 스크롤 제일 하단의 <Loader> 컴포넌트가 보이면 추가로 데이터를 가지고 오는 API를 호출한다.</li>
+<li>더 가지고 올 데이터가 없는 경우 fetchMore = false</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="3-코드"></a><a href="#3-코드" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. 코드</h2>
+<h3><a class="anchor" aria-hidden="true" id="3-1-useobserverjs"></a><a href="#3-1-useobserverjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3-1 useObserver.js</h3>
+<ul>
+<li>초기 fetch시 isObserve = true로 변경되고 observer 시작한다.</li>
+<li>entry.intersectionRatio &gt; 0 일경우 isIntersecting state를 true로 변경해준다.</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> { useState, useEffect, useRef } <span class="hljs-keyword">from</span> <span class="hljs-string">"react"</span>;
+
+<span class="hljs-keyword">const</span> options = {
+    <span class="hljs-attr">root</span>: <span class="hljs-literal">null</span>,
+    <span class="hljs-attr">rootMargin</span>: <span class="hljs-string">"0px"</span>,
+    <span class="hljs-attr">threshold</span>: <span class="hljs-number">0.25</span>,
+};
+<span class="hljs-keyword">const</span> useObserver = <span class="hljs-function">(<span class="hljs-params">isObserve</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> ref = useRef();
+    <span class="hljs-keyword">const</span> [isIntersecting, setIntersecting] = useState(<span class="hljs-literal">false</span>);
+
+    useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">const</span> observer = <span class="hljs-keyword">new</span> IntersectionObserver(<span class="hljs-function">(<span class="hljs-params">[entry]</span>) =&gt;</span> {
+            isObserve &amp;&amp; entry.intersectionRatio &gt; <span class="hljs-number">0</span>
+                ? setIntersecting(<span class="hljs-literal">true</span>)
+                : setIntersecting(<span class="hljs-literal">false</span>);
+        }, options);
+        <span class="hljs-keyword">const</span> elem = ref?.current;
+        <span class="hljs-keyword">if</span> (elem) {
+            observer.observe(elem);
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+            observer.unobserve(elem);
+        };
+    }, [ref, isObserve]);
+
+    <span class="hljs-keyword">return</span> [ref, isIntersecting];
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> useObserver;
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="3-2-cardlistinfinitejs"></a><a href="#3-2-cardlistinfinitejs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3-2 CardListInfinite.js</h3>
+<ul>
+<li>하단 <Loader>에 ref를 걸어준다.</li>
+<li>더보기 눌렀을 때 &amp; 초기 패치 완료 후 &amp; fetchMore = true 일때 데이터를 더 가지고 온다.</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// style 생략</span>
+<span class="hljs-keyword">const</span> CardListInfinite = <span class="hljs-function">(<span class="hljs-params">{ posters, fetchUrl }</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> SIZE = <span class="hljs-number">12</span>;
+    <span class="hljs-keyword">const</span> [showMore, setShowMore] = useState(<span class="hljs-literal">true</span>);
+
+    <span class="hljs-keyword">const</span> dispatch = useDispatch();
+    <span class="hljs-keyword">const</span> detail = useSelector(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state.detail);
+    <span class="hljs-keyword">const</span> { data, initFetch, isFetching, fetchMore } = detail;
+    <span class="hljs-keyword">const</span> [ref, isIntersecting] = useObserver(initFetch);
+
+    <span class="hljs-keyword">const</span> handleClick = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        setShowMore(<span class="hljs-literal">false</span>);
+    };
+
+    useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        dispatch(detailActions.init(posters, SIZE));
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> dispatch(detailActions.initialize());
+    }, [dispatch, posters]);
+
+    useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        <span class="hljs-keyword">if</span> (isIntersecting &amp;&amp; !showMore &amp;&amp; fetchMore) {
+            dispatch(detailActions.fetchMore(fetchUrl));
+        }
+    }, [dispatch, isIntersecting, showMore, fetchMore, fetchUrl]);
+
+    <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Wrppaer</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">CardList</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"작품들"</span>&gt;</span>
+                {data.map((item, idx) =&gt; (
+                    <span class="hljs-tag">&lt;<span class="hljs-name">StyledCard</span>
+                        <span class="hljs-attr">key</span>=<span class="hljs-string">{idx}</span>
+                        <span class="hljs-attr">item</span>=<span class="hljs-string">{item}</span>
+                        <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span>
+                            (window.location = `/contents/${item.id}`)
+                        }
+                    /&gt;
+                ))}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">CardList</span>&gt;</span>
+            {showMore &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleClick}</span>&gt;</span>더보기<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>}
+            <span class="hljs-tag">&lt;<span class="hljs-name">StyledLoader</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{ref}</span>&gt;</span>
+                {isFetching &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">Loader</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"800px"</span> /&gt;</span>}
+            <span class="hljs-tag">&lt;/<span class="hljs-name">StyledLoader</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">Wrppaer</span>&gt;</span></span>
+    );
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="3-3-detailactionsjs"></a><a href="#3-3-detailactionsjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3-3 detailActions.js</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> init = <span class="hljs-function">(<span class="hljs-params">data, size</span>) =&gt;</span> <span class="hljs-keyword">async</span> (dispatch) =&gt; {
+    <span class="hljs-keyword">try</span> {
+        dispatch({
+            <span class="hljs-attr">type</span>: DETAIL_INIT,
+            <span class="hljs-attr">payload</span>: { data, size },
+        });
+    } <span class="hljs-keyword">catch</span> (err) {
+        <span class="hljs-built_in">console</span>.error(err.response ? err.response : err);
+    }
+};
+
+<span class="hljs-keyword">const</span> fetchMore = <span class="hljs-function">(<span class="hljs-params">fetchUrl</span>) =&gt;</span> <span class="hljs-keyword">async</span> (dispatch, getState) =&gt; {
+    <span class="hljs-keyword">try</span> {
+        dispatch({ <span class="hljs-attr">type</span>: DETAIL_FETCHING });
+        
+        <span class="hljs-comment">// getState()로 현재 데이터 가지고옴</span>
+        <span class="hljs-keyword">let</span> { page, size } = getState().detail;
+        <span class="hljs-comment">// 현재 url 뒤에 query String을 붙여준다.</span>
+        <span class="hljs-comment">// http://localhost:3000?size=10&amp;page=10</span>
+        <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> api.get(
+            makeUrlQuery(fetchUrl, { size, <span class="hljs-attr">page</span>: page + <span class="hljs-number">1</span> })
+        );
+        dispatch({
+            <span class="hljs-attr">type</span>: DETAIL_FETCH_DATA,
+            <span class="hljs-attr">payload</span>: res.data,
+        });
+    } <span class="hljs-keyword">catch</span> (err) {
+        <span class="hljs-built_in">console</span>.error(err.response ? err.response : err);
+    }
+};
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="3-4-detailreducersjs"></a><a href="#3-4-detailreducersjs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3-4 detailReducers.js</h3>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> detailReducers = <span class="hljs-function">(<span class="hljs-params">state = INITIAL_STATE, action = {}</span>) =&gt;</span> {
+    <span class="hljs-keyword">switch</span> (action.type) {
+        <span class="hljs-comment">// 초기 fetch 후에 initFetch를 true로 변경</span>
+        <span class="hljs-keyword">case</span> DETAIL_INIT:
+            <span class="hljs-keyword">return</span> {
+                ...state,
+                ...action.payload,
+                <span class="hljs-attr">page</span>: state.page + <span class="hljs-number">1</span>,
+                <span class="hljs-attr">initFetch</span>: <span class="hljs-literal">true</span>,
+            };
+        <span class="hljs-comment">// 패치될때마다 page를 1씩 증가</span>
+        <span class="hljs-comment">// 요청하는 데이터 개수보다 더 적은 수의 data가 오는 경우 fetchMore을 false로 변경</span>
+        <span class="hljs-keyword">case</span> DETAIL_FETCH_DATA:
+            <span class="hljs-keyword">return</span> {
+                ...state,
+                <span class="hljs-attr">data</span>: [...state.data, ...action.payload],
+                <span class="hljs-attr">page</span>: state.page + <span class="hljs-number">1</span>,
+                <span class="hljs-attr">isFetching</span>: <span class="hljs-literal">false</span>,
+                <span class="hljs-attr">fetchMore</span>: action.payload.length &lt; state.size ? <span class="hljs-literal">false</span> : <span class="hljs-literal">true</span>,
+            };
+
+        <span class="hljs-keyword">case</span> DETAIL_INITIALIZE:
+            <span class="hljs-keyword">return</span> INITIAL_STATE;
+
+        <span class="hljs-keyword">case</span> DETAIL_FETCHING:
+            <span class="hljs-keyword">return</span> {
+                ...state,
+                <span class="hljs-attr">isFetching</span>: <span class="hljs-literal">true</span>,
+            };
+        <span class="hljs-keyword">default</span>:
+            <span class="hljs-keyword">return</span> state;
+    }
+};
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/project/devpedia/devpedia_3"><span class="arrow-prev">← </span><span>※ 마우스 따라다니는 평점 별 컴포넌트 만들기</span></a><a class="docs-next button" href="/docs/project/devpedia/devpedia_5"><span>※ Card List Slick</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1-동작">1. 동작</a><ul class="toc-headings"><li><a href="#1-1-contentcontentid">1-1 content/{contentId}</a></li><li><a href="#1-2-detaildeckspageid">1-2 detail/decks/{pageId}</a></li><li><a href="#1-3-usersuseridmoviesratings">1-3 /users/{userId}/movies/ratings</a></li></ul></li><li><a href="#2-설명">2. 설명</a></li><li><a href="#3-코드">3. 코드</a><ul class="toc-headings"><li><a href="#3-1-useobserverjs">3-1 useObserver.js</a></li><li><a href="#3-2-cardlistinfinitejs">3-2 CardListInfinite.js</a></li><li><a href="#3-3-detailactionsjs">3-3 detailActions.js</a></li><li><a href="#3-4-detailreducersjs">3-4 detailReducers.js</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="TIL: TODAY I LEARN" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 KyungYoon Ha</section></footer></div></body></html>
