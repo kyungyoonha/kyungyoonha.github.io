@@ -84,8 +84,8 @@
 <li>한글 + 이모티콘 저장 -&gt; utfmb4</li>
 </ul>
 <pre><code class="hljs css language-js">{
-    <span class="hljs-attr">charset</span>: <span class="hljs-string">'utf8md4'</span>,
-    <span class="hljs-attr">collate</span>: <span class="hljs-string">'utf8md4_general_ci'</span>
+    <span class="hljs-attr">charset</span>: <span class="hljs-string">'utf8mb4'</span>,
+    <span class="hljs-attr">collate</span>: <span class="hljs-string">'utf8mb4_general_ci'</span>
 }
 </code></pre>
 <ul>
@@ -193,6 +193,25 @@ Hashtag.associate db =&gt; {
 <li>역시나 중간 테이블이 생긴다.</li>
 </ul></li>
 </ul>
+<h2><a class="anchor" aria-hidden="true" id="다대다-관계-belongstomany-데이터-추가하기"></a><a href="#다대다-관계-belongstomany-데이터-추가하기" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>다대다 관계 belongsToMany 데이터 추가하기</h2>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// 특정 유저를 내가 팔로우할때 그 유저의 팔로워에 내 아이디를 추가한다.</span>
+router.patch(<span class="hljs-string">'/:userId/follow'</span>, isLoggedIn, <span class="hljs-keyword">async</span> (req, res, next) =&gt; {
+    <span class="hljs-keyword">try</span>{
+        <span class="hljs-keyword">const</span> user = <span class="hljs-keyword">await</span> User.findOne({ <span class="hljs-attr">where</span>: { <span class="hljs-attr">id</span>: req.params.userId }});
+        <span class="hljs-keyword">if</span>(!user){
+            res.status(<span class="hljs-number">403</span>).send(<span class="hljs-string">'없는 사람을 팔로우 할 수 없습니다'</span>);
+        }
+        <span class="hljs-keyword">await</span> user.addFollowers(req.user.id);
+        <span class="hljs-comment">// await user.removeFollowers(req.user.id);</span>
+        <span class="hljs-comment">// await user.getFollowers()</span>
+        <span class="hljs-comment">// await user.getFollowings()</span>
+        res.status(<span class="hljs-number">200</span>).json({ <span class="hljs-attr">nickname</span>: req.body.nickname })
+    }<span class="hljs-keyword">catch</span>(err){
+        <span class="hljs-built_in">console</span>.error(err)
+        next(err)
+    }
+})
+</code></pre>
 <h2><a class="anchor" aria-hidden="true" id="foreignkey"></a><a href="#foreignkey" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>foreignKey</h2>
 <ul>
 <li>다대 다 관계에서 테이블 명이 다른 경우는 컬럼명이 UserId / PostId 처럼 구분이 됌</li>
@@ -292,4 +311,218 @@ router.post(<span class="hljs-string">'/login'</span>, (req, res, next) =&gt; {
 <ul>
 <li>뒤로가기 했을때 그 페이지의 기록을 지우고 싶은 경우 사용한다.</li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#제로초-강의">제로초 강의</a><ul class="toc-headings"><li><a href="#리덕스-사가">리덕스 사가</a></li><li><a href="#immer">immer</a></li><li><a href="#성능-최적화">성능 최적화</a></li><li><a href="#facker">facker</a></li><li><a href="#무한스크롤">무한스크롤</a></li><li><a href="#무한스크롤-scroll-이벤트시-requst-한번만-요청하기">무한스크롤 scroll 이벤트시, requst 한번만 요청하기</a></li><li><a href="#react-verturelize">react-verturelize</a></li><li><a href="#서버와-프론트를-나누는-이유">서버와 프론트를 나누는 이유</a></li><li><a href="#노드는-서버가-아니다">노드는 서버가 아니다.</a></li><li><a href="#rest-api">REST API</a></li></ul></li><li><a href="#mysql2">Mysql2</a></li><li><a href="#시퀄라이즈">시퀄라이즈</a><ul class="toc-headings"><li><a href="#1-1-노드에서-시퀄라이즈-사용">1-1. 노드에서 시퀄라이즈 사용</a></li></ul></li><li><a href="#db-설계">db 설계</a></li><li><a href="#belongsto-vs-hasmany">belongsTo vs hasMany</a></li><li><a href="#일대일-관계-hasone">일대일 관계 hasOne</a></li><li><a href="#다대다-관계-belongstomany">다대다 관계 belongsToMany</a></li><li><a href="#foreignkey">foreignKey</a></li><li><a href="#bycrypt">bycrypt</a></li><li><a href="#에러는-next로-한방에-처리">에러는 next로 한방에 처리</a></li><li><a href="#cors">CORS</a></li><li><a href="#passport">passport</a><ul class="toc-headings"><li><a href="#미들웨어-확장">미들웨어 확장</a></li></ul></li><li><a href="#passport--쿠키와-세션">passport + 쿠키와 세션</a></li><li><a href="#routereplace">Route.replace()</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="TIL: TODAY I LEARN" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 KyungYoon Ha</section></footer></div></body></html>
+<h2><a class="anchor" aria-hidden="true" id="정리"></a><a href="#정리" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>정리</h2>
+<p>노드. delete시 postId 내려줌
+노드. data 내려줄때 object 형식으로 내려준다
+노드. res.status(200).json({ postId: postId }) =&gt; 프론트에서 res.data.postId로 접근하게 / res.data보다는 명확함</p>
+<h2><a class="anchor" aria-hidden="true" id="고차함수"></a><a href="#고차함수" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>고차함수</h2>
+<ul>
+<li>고차함수란 함수를 인자로 받거나 또는 함수를 리턴함으로써 작동하는 함수를 말한다.</li>
+<li>map()문법도 고차함수이다.</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> onCancel  = <span class="hljs-function">(<span class="hljs-params">id</span>) =&gt;</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    dispatch({
+        <span class="hljs-attr">type</span>: UNFOLLOW_REQUEST
+    })
+}
+
+
+<span class="hljs-keyword">return</span>(
+    <span class="xml"><span class="hljs-tag">&lt;&gt;</span>
+        { [...new Array(4)].map(_, idx) =&gt; {
+            <span class="hljs-tag">&lt;<span class="hljs-name">Card</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{onCancel(item.id)}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Card</span>&gt;</span>
+        }}
+        
+    <span class="hljs-tag">&lt;/&gt;</span></span>
+)
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> arr1 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];
+arr1.map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {
+    <span class="hljs-built_in">console</span>.log(item)
+})
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="이미지-업로드를-위한-multer"></a><a href="#이미지-업로드를-위한-multer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>이미지 업로드를 위한 multer</h2>
+<ul>
+<li>파일이나 이미지 비디오는 multipart 데이터로 올라간다.</li>
+<li>프론트에서 백엔드로 데이터를 보낼때 json과 urlencoded 두개로만 받게되면</li>
+<li>multipart 데이터 형식은 백엔드에서 받을 수 없다.</li>
+<li>form으로 보낼경우 -&gt; urlencoded</li>
+</ul>
+<pre><code class="hljs css language-js">
+app.use(express.json());
+app.use(express.urlencoded({ <span class="hljs-attr">extended</span>: <span class="hljs-literal">true</span> }))
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="multer-미들웨어"></a><a href="#multer-미들웨어" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>multer 미들웨어</h3>
+<ul>
+<li>파일 저장을 컴퓨터의 하드디스크에 저장할 경우 안좋음</li>
+<li>요청이 많아 서버 스케일링을 하게 될 경우(같은 서버를 여러개 복사) 파일도 같이 복사된다.</li>
+<li>서버에 쓸데없는 공간을 계속 차지하게 되므로 클라우드로 분리하는게 좋다.</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> upload = multer({
+    <span class="hljs-attr">storage</span>: multer.diskStore({
+        destination(req, file, done){
+            done(<span class="hljs-literal">null</span>, <span class="hljs-string">'upload'</span>); <span class="hljs-comment">// 하드디스크 upload 폴더에 넣어놓겠다. -&gt; 나중에는 aws 클라우드에 저장할 것임</span>
+        },
+        filename(req, file, done){
+            done(<span class="hljs-literal">null</span>)
+        }
+    })
+})
+
+<span class="hljs-comment">// 사용</span>
+
+</code></pre>
+<p>파일 업로드. 이미지 20MB로 제한 -&gt; 서버 공격이 될 수 있다.
+파일 업로드. 동영상 100MB ~ 200MB
+파일 업로드. 되도록 파일은 백엔드를 안거치고 프론트에서 바로 클라우드로 넘기는 것이 좋다.
+파일 업로드. 이미지나 동영상 처리는 서버의 cpu와 메모리를 많이 잡아 먹는다.
+파일 업로드. db에 파일 자체를 저장하는 것이 아니라 src 주소만 가지고 있는다.
+파일 업로드. db에 파일 자체를 넣으면 db가 무거워지고 캐싱도 할 수 없으므로 파일은 따로 저장
+파일 업로드. 방식1. 이미지 + json. 이미지 데이터와 json 데이터를 같이 보내는 방법
+파일 업로드. 방식1. 장점. api 통신은 한번이면 끝난다
+파일 업로드. 방식1. 단점. 이미지 + json. 파일 리사이징이나 파일 미리보기가 애매해진다.
+파일 업로드. 방식2. 이미지 먼저 업로드 -&gt; json 데이터 업로드
+파일 업로드. 방식2. 파일만 업로드하고 데이터 등록을 안하는 경우가 생길 수 있고 api가 여러번 통신됌
+파일 업로드. 방식2. 하지만, 보통 이미지도 자산이기 때문에 서버에 남겨놓는 것이 좋다. 따로 삭제해주진 않음
+파일 업로드. 방식2. 이미지가 차지하는 용량에 대한 비용보다 이미지를 얻음으로써 얻을 수 있는 가치가 더 크다.
+파일 업로드. 방식2. 나중에는 이미지로 머신러닝도 돌릴 수 있음</p>
+<p>multer. upload.array('image') =&gt; 이미지 여러개 처리
+multer. upload.single('image') =&gt; 이미지 하나 처리
+multer. upload.none() =&gt; 텍스트만 처리</p>
+<h3><a class="anchor" aria-hidden="true" id="유사배열"></a><a href="#유사배열" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>유사배열</h3>
+<ul>
+<li>input type=&quot;file&quot; 인 경우 유사배열이 생김</li>
+<li>개발자도구에서 <strong>proto</strong>를보면 forEach가 없음</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> onChangeImage = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+    <span class="hljs-keyword">const</span> imageFormData = <span class="hljs-keyword">new</span> FormData();
+    [].forEach.call(e.target.files, (f) =&gt; {
+        imageFormData.append(<span class="hljs-string">'image'</span>, f)
+    }
+})
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="path"></a><a href="#path" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>path</h3>
+<ul>
+<li>path.join으로 경로 합쳐주는이유는 운영체제에 따라서 / 또는 \ 로 경로가 바뀔 수 있다.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="static"></a><a href="#static" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>static</h3>
+<ul>
+<li>app.use('/', express.static.(path.join(__dirname, 'upload' )))</li>
+<li>그냥 '/'로만 해놓는게 좋다.</li>
+<li>프론트에서 벡엔드의 파일 구조를 알수가 없으므로 보안에 더 유리함</li>
+<li>프론트에서는 <a href="http://localhost/">http://localhost/</a> 인데 실제는 upload파일 안에 있음</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="requset--success--fail-3가지로-나눠서-만드는-이유"></a><a href="#requset--success--fail-3가지로-나눠서-만드는-이유" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>requset / success / fail 3가지로 나눠서 만드는 이유</h3>
+<ul>
+<li>비동기 액션이므로 요청과 success / fail을 나눠서 처리해줘야한다.</li>
+<li>동기 액션일 경우에는 하나만 만들어줘도 된다.</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// 업로드된 이미지 제거시 서버와 따로 통신할 필요없이 제거 api 날리고 동기로 바로 지워주면 된다 </span>
+
+<span class="hljs-keyword">case</span> REMOVE_IMAGE:
+    draft.imagePaths =draft.imagePaths.filter(<span class="hljs-function">(<span class="hljs-params">v, i</span>) =&gt;</span> i !== action.data )
+    <span class="hljs-keyword">break</span>;
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="모델의-include-가-복잡해질-경우"></a><a href="#모델의-include-가-복잡해질-경우" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>모델의 include 가 복잡해질 경우</h2>
+<ul>
+<li>포함 관계가 복잡해지면 db에서 데이터를 가져오는데 느려질 수 있다.</li>
+<li>이런 경우에는 라우터를 분리해서 처리하는게 좋음</li>
+<li>예를 들어 comments는 따로 분리해서 조회하도록 라우터를 분리 할수 있음</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="getserversideprops-vs-getstaticprops"></a><a href="#getserversideprops-vs-getstaticprops" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>getServerSideProps vs getStaticProps</h2>
+<ul>
+<li>웬만해서 잘 안바뀌는 데이터인 경우 getStaticProps 사용한다.</li>
+<li>블로그 게시글 처럼 잘 안 바뀌는 경우에 쓴다.</li>
+<li>next에서 배포할때 정적인 html로 뽑아서 줌</li>
+<li>거의 대부분 getSErverSideProps를 쓴다.</li>
+</ul>
+<p>next. 다이나믹 라우팅. 기존 라우터에서 /post/:postId
+next. 다이나믹 라우팅. [id].js 로 나타냄</p>
+<h2><a class="anchor" aria-hidden="true" id="css-서버사이드-렌더링"></a><a href="#css-서버사이드-렌더링" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>css 서버사이드 렌더링</h2>
+<ul>
+<li>babel 설정</li>
+<li>_document.js 만들기</li>
+</ul>
+<pre><code class="hljs css language-js">{
+    <span class="hljs-string">"presets"</span>: [<span class="hljs-string">"next/babel"</span>],
+    <span class="hljs-string">"plugins"</span>:[
+        <span class="hljs-string">"babel-plugin-styled-components"</span>, {
+            <span class="hljs-string">"ssr"</span>: <span class="hljs-literal">true</span>,
+            <span class="hljs-string">"displayName"</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// </span>
+        }
+    ]
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="npm-trends-이용하면-동향과-size까지-비교할-수-있어서-좋음"></a><a href="#npm-trends-이용하면-동향과-size까지-비교할-수-있어서-좋음" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>npm trends 이용하면 동향과 size까지 비교할 수 있어서 좋음</h2>
+<ul>
+<li>moment vs day.js -&gt; 거의 비슷한데 day.js는 용량이 엄청 적음</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="cicd"></a><a href="#cicd" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>CI/CD</h2>
+<ul>
+<li>코드 변경 -&gt; 깃헙 푸시</li>
+<li>CI/CD가 자동으로 코드 에러 체크 및 테스트 하고 빌드한 후에 서버에 배포까지 해준다.</li>
+<li>젠킨스, 서클CI, 트레비스 CI</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="빌드"></a><a href="#빌드" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>빌드</h2>
+<ul>
+<li>각 페이지가 1MB 안넘으면 한국에서 서비스 하는데 문제없음</li>
+<li>1MB 넘으면 codeSpliting 해주는게 좋음</li>
+<li>1MB 넘으면 모바일에서 렉이 걸림</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="cross-env"></a><a href="#cross-env" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>cross-env</h2>
+<ul>
+<li>npm script 실행시 환경변수 변경후에 실행하고 싶을 경우</li>
+<li>build: &quot;cross-env ALALYZE=true NODE_ENV=production next build</li>
+<li>ALALYZE 값을 true, NODE_ENV=production으로 설정하고 실행하겠다.</li>
+<li>cross-env 있어야 윈도우에서도 실행된다.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="bundle-anayizer"></a><a href="#bundle-anayizer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>bundle-anayizer</h2>
+<p><img src="https://user-images.githubusercontent.com/29701385/106927514-98e5a500-6755-11eb-91f4-304d07418a8c.png" alt="111"></p>
+<ul>
+<li>concatenated는 어쩔수없음 - 합쳐져 있기 때문</li>
+<li>moment.js를 보면 다른 언어도 지원해주고있음</li>
+<li>검색 -&gt; moment locale tree shaking</li>
+<li>new webpack.ContextReplacementPlugin(/moment[/\]locale$/, /^./ko$/)</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="이미지-리사이징"></a><a href="#이미지-리사이징" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>이미지 리사이징</h2>
+<ul>
+<li><p>서버를 따로 분리하는게 좋다.</p></li>
+<li><p>업로드 될때 해줘도 되지만 성능적으로 무리가 간다.</p></li>
+<li><p>이미지 리사이징 전용 서버를 분리하는게 좋다.</p></li>
+<li><p>람다</p>
+<ul>
+<li>이미지 리사이징 하는 함수를 만듬</li>
+<li>이미지 업로드 될때 함수를 실행해서 압축 이미지를 s3애 저장</li>
+<li>람다는 aws 자체에서 돌아가므로 사용자 정보를 따로 넣어줄 필요 없음</li>
+<li>image가 jpg인 경우 jpeg로 넣어줘야한다.</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> s3Object = <span class="hljs-keyword">await</span> s3.getObject({ Bucket, Key }).promise();
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'original'</span>, s3Object.body.length ) <span class="hljs-comment">// 0101... 로 되어있음 length로 몇 바이트인지 알 수 있다.</span>
+
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="우분투-권한"></a><a href="#우분투-권한" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>우분투 권한</h2>
+<pre><code class="hljs css language-js">$ sudo su <span class="hljs-comment">// root권한으로 적용</span>
+$ exit <span class="hljs-comment">// 다시 원래 사용자로 돌아온다.</span>
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="ngnix"></a><a href="#ngnix" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ngnix</h2>
+<ul>
+<li>ngnix. 리버스 프록시. 앞에 서버를 하나두고(nginix) 뒤에 또다른 서버를 두는 방법(next)</li>
+<li>ngnix. 리버스 프록시 ngnix가 next를 리버스 프록시함</li>
+<li>ngnix. 장점. ngnix: 캐싱, 정적파일제공, 리다이렉션 등 여러가지 일을 할 수 있음</li>
+<li>ngnix. 443포트(https)로 올 경우는 ngnix에서 바로 next(3060)으로 연결</li>
+<li>ngnix. 80포트(http)로 올 경우는 nginix에서 443포트로 리다이렉트 후에  3060과 연결한다.</li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="letsencrypt"></a><a href="#letsencrypt" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>letsencrypt</h2>
+<pre><code class="hljs css language-js">$ wget https:<span class="hljs-comment">//dl.ef.org/certbot-auto</span>
+$ chmod a+x certbot-auto  <span class="hljs-comment">// 모든 사용자에게 권한을준다. -rwxrwx-x </span>
+$ ls -al <span class="hljs-comment">// 권한 정보도 같이 나옴  </span>
+$ ./certbot-auto
+</code></pre>
+<ul>
+<li>wget <a href="https://dl.eff.org/certbot-auto">https://dl.eff.org/certbot-auto</a></li>
+<li>서버에 비밀키, 브라우저에 공개키를 가짐</li>
+<li>3개월 무료 이용서를 주며 계속 연장 가능하다.</li>
+<li>crontab letsencrypt</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#제로초-강의">제로초 강의</a><ul class="toc-headings"><li><a href="#리덕스-사가">리덕스 사가</a></li><li><a href="#immer">immer</a></li><li><a href="#성능-최적화">성능 최적화</a></li><li><a href="#facker">facker</a></li><li><a href="#무한스크롤">무한스크롤</a></li><li><a href="#무한스크롤-scroll-이벤트시-requst-한번만-요청하기">무한스크롤 scroll 이벤트시, requst 한번만 요청하기</a></li><li><a href="#react-verturelize">react-verturelize</a></li><li><a href="#서버와-프론트를-나누는-이유">서버와 프론트를 나누는 이유</a></li><li><a href="#노드는-서버가-아니다">노드는 서버가 아니다.</a></li><li><a href="#rest-api">REST API</a></li></ul></li><li><a href="#mysql2">Mysql2</a></li><li><a href="#시퀄라이즈">시퀄라이즈</a><ul class="toc-headings"><li><a href="#1-1-노드에서-시퀄라이즈-사용">1-1. 노드에서 시퀄라이즈 사용</a></li></ul></li><li><a href="#db-설계">db 설계</a></li><li><a href="#belongsto-vs-hasmany">belongsTo vs hasMany</a></li><li><a href="#일대일-관계-hasone">일대일 관계 hasOne</a></li><li><a href="#다대다-관계-belongstomany">다대다 관계 belongsToMany</a></li><li><a href="#다대다-관계-belongstomany-데이터-추가하기">다대다 관계 belongsToMany 데이터 추가하기</a></li><li><a href="#foreignkey">foreignKey</a></li><li><a href="#bycrypt">bycrypt</a></li><li><a href="#에러는-next로-한방에-처리">에러는 next로 한방에 처리</a></li><li><a href="#cors">CORS</a></li><li><a href="#passport">passport</a><ul class="toc-headings"><li><a href="#미들웨어-확장">미들웨어 확장</a></li></ul></li><li><a href="#passport--쿠키와-세션">passport + 쿠키와 세션</a></li><li><a href="#routereplace">Route.replace()</a></li><li><a href="#정리">정리</a></li><li><a href="#고차함수">고차함수</a></li><li><a href="#이미지-업로드를-위한-multer">이미지 업로드를 위한 multer</a><ul class="toc-headings"><li><a href="#multer-미들웨어">multer 미들웨어</a></li><li><a href="#유사배열">유사배열</a></li><li><a href="#path">path</a></li><li><a href="#static">static</a></li><li><a href="#requset--success--fail-3가지로-나눠서-만드는-이유">requset / success / fail 3가지로 나눠서 만드는 이유</a></li></ul></li><li><a href="#모델의-include-가-복잡해질-경우">모델의 include 가 복잡해질 경우</a></li><li><a href="#getserversideprops-vs-getstaticprops">getServerSideProps vs getStaticProps</a></li><li><a href="#css-서버사이드-렌더링">css 서버사이드 렌더링</a></li><li><a href="#npm-trends-이용하면-동향과-size까지-비교할-수-있어서-좋음">npm trends 이용하면 동향과 size까지 비교할 수 있어서 좋음</a></li><li><a href="#cicd">CI/CD</a></li><li><a href="#빌드">빌드</a></li><li><a href="#cross-env">cross-env</a></li><li><a href="#bundle-anayizer">bundle-anayizer</a></li><li><a href="#이미지-리사이징">이미지 리사이징</a></li><li><a href="#우분투-권한">우분투 권한</a></li><li><a href="#ngnix">ngnix</a></li><li><a href="#letsencrypt">letsencrypt</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="TIL: TODAY I LEARN" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 KyungYoon Ha</section></footer></div></body></html>

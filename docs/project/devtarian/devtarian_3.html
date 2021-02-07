@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>※ 지도 검색으로 가장 가까운 가게 정보 가져오기 · TIL: TODAY I LEARN</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## 1. 키워드로 위도, 경도 알아내기"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="※ 지도 검색으로 가장 가까운 가게 정보 가져오기 · TIL: TODAY I LEARN"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kyungyoonha.github.io/"/><meta property="og:description" content="## 1. 키워드로 위도, 경도 알아내기"/><meta property="og:image" content="https://kyungyoonha.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://kyungyoonha.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://kyungyoonha.github.io/blog/atom.xml" title="TIL: TODAY I LEARN Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://kyungyoonha.github.io/blog/feed.xml" title="TIL: TODAY I LEARN Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="TIL: TODAY I LEARN"/><h2 class="headerTitleWithLogo">TIL: TODAY I LEARN</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/project/devpedia/devpedia_0" target="_self">Project</a></li><li class=""><a href="/docs/javascript/javascript_1" target="_self">TIL</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>채식한입</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">왓챠피디아 제로</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_0">※ 소개</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_1">※ Custom Hooks로 Form inputs 관리하기</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_2">※ 엑세스 토큰 만료시, 리프레시 토큰으로 엑세스 토큰 얻기</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_3">※ 마우스 따라다니는 평점 별 컴포넌트 만들기</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_4">※ 무한스크롤 1. Intersection Observer</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devpedia/devpedia_5">※ Card List Slick</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">채식한입</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/project/devtarian/devtarian_0">※ 소개</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devtarian/devtarian_1">※ Firebase로 노드 서버 배포하기</a></li><li class="navListItem"><a class="navItem" href="/docs/project/devtarian/devtarian_2">※ Firebase functions로 트리거 만들기</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/project/devtarian/devtarian_3">※ 지도 검색으로 가장 가까운 가게 정보 가져오기</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">※ 지도 검색으로 가장 가까운 가게 정보 가져오기</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="1-키워드로-위도-경도-알아내기"></a><a href="#1-키워드로-위도-경도-알아내기" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. 키워드로 위도, 경도 알아내기</h2>
+<ul>
+<li>키워드 검색하면 kakao Place API를 이용하여 새로 얻은 위도 경도를 알아낸다</li>
+<li>새로운 값으로 URL queryString 정보를 변경해준다.</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">import</span> React, { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> styled <span class="hljs-keyword">from</span> <span class="hljs-string">'styled-components'</span>;
+<span class="hljs-keyword">import</span> history <span class="hljs-keyword">from</span> <span class="hljs-string">'../../../history'</span>;
+<span class="hljs-keyword">import</span> queryString <span class="hljs-keyword">from</span> <span class="hljs-string">'query-string'</span>;
+<span class="hljs-keyword">import</span> { changeObjectToQuery } <span class="hljs-keyword">from</span> <span class="hljs-string">'../../../utils/helper'</span>;
+
+<span class="hljs-keyword">const</span> SearchForm = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> [input, setInputs] = useState(<span class="hljs-string">'종각역'</span>);
+  <span class="hljs-keyword">const</span> { q, ...query } = queryString.parse(history.location.search);
+  
+  <span class="hljs-keyword">const</span> handleInputChange = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+    setInputs(e.target.value);
+  };
+
+  <span class="hljs-keyword">const</span> handleInputClick = <span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+    e.preventDefault();
+    <span class="hljs-keyword">var</span> ps = <span class="hljs-keyword">new</span> <span class="hljs-built_in">window</span>.kakao.maps.services.Places();
+    ps.keywordSearch(input, (data, status, pagination) =&gt; {
+      <span class="hljs-keyword">if</span> (status === <span class="hljs-built_in">window</span>.kakao.maps.services.Status.OK) {
+        
+        <span class="hljs-built_in">window</span>.location = <span class="hljs-string">`/search<span class="hljs-subst">${changeObjectToQuery({
+          ...query,
+          q: input,
+          lat: data[<span class="hljs-number">0</span>].y,
+          lng: data[<span class="hljs-number">0</span>].x,
+        }</span>)}`</span>;
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">window</span>.location = <span class="hljs-string">`/search?q=<span class="hljs-subst">${input}</span>&amp;lat=37.573&amp;lng=126.9794&amp;range=0`</span>;
+      }
+    });
+    setInputs(<span class="hljs-string">''</span>);
+  };
+
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Wrap</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">SearchInput</span>
+        <span class="hljs-attr">placeholder</span>=<span class="hljs-string">{q</span> ? <span class="hljs-attr">q</span> + ' 검색결과' <span class="hljs-attr">:</span> '근처의 채식 식당을 찾아보세요!'}
+        <span class="hljs-attr">value</span>=<span class="hljs-string">{input}</span>
+        <span class="hljs-attr">data-show</span>=<span class="hljs-string">"show"</span>
+        <span class="hljs-attr">onChange</span>=<span class="hljs-string">{handleInputChange}</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">SearchInput</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">SearchBtn</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">data-show</span>=<span class="hljs-string">"show"</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{handleInputClick}</span>&gt;</span>
+        검색
+      <span class="hljs-tag">&lt;/<span class="hljs-name">SearchBtn</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Wrap</span>&gt;</span></span>
+  );
+};
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> SearchForm;
+
+<span class="hljs-keyword">const</span> Wrap = styled.form<span class="hljs-string">`
+  position: relative;
+  height: 49px;
+`</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> SearchInput = styled.input<span class="hljs-string">`
+  z-index: 1;
+  position: absolute;
+  float: left;
+  width: 100%;
+  padding: 14px 10px;
+  border-radius: 4px;
+  background-color: <span class="hljs-subst">${(props) =&gt; props.theme.background[<span class="hljs-number">0</span>]}</span>;
+  border: 1px solid <span class="hljs-subst">${(props) =&gt; props.theme.gray[<span class="hljs-number">0</span>]}</span>;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+`</span>;
+
+<span class="hljs-keyword">const</span> SearchBtn = styled.button<span class="hljs-string">`
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  float: right;
+  width: 50px;
+  height: 103%;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-color: <span class="hljs-subst">${(props) =&gt; props.theme.green[<span class="hljs-number">1</span>]}</span>;
+  color: <span class="hljs-subst">${(props) =&gt; props.theme.background[<span class="hljs-number">0</span>]}</span>;
+
+  &amp;:hover {
+    background-color: <span class="hljs-subst">${(props) =&gt; props.theme.green[<span class="hljs-number">0</span>]}</span>;
+  }
+`</span>;
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="2-서버-위도-경도로-가장-근처-데이터-찾기-geofirestore"></a><a href="#2-서버-위도-경도로-가장-근처-데이터-찾기-geofirestore" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. 서버: 위도 경도로 가장 근처 데이터 찾기 (geoFireStore)</h2>
+<pre><code class="hljs css language-js">exports.getSearch = <span class="hljs-keyword">async</span> (req, res) =&gt; {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> q = req.query.q;
+        <span class="hljs-keyword">const</span> lat = req.query.lat;
+        <span class="hljs-keyword">const</span> lng = req.query.lng;
+        <span class="hljs-keyword">const</span> category = req.query.category || <span class="hljs-string">"all"</span>;
+        <span class="hljs-keyword">const</span> vegType = req.query.vegType || <span class="hljs-string">"all"</span>;
+        <span class="hljs-keyword">const</span> page = req.query.page || <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">const</span> limit = req.query.limit || <span class="hljs-number">5</span>; 
+        <span class="hljs-keyword">const</span> order = req.query.order || <span class="hljs-string">"distance"</span>;
+        <span class="hljs-keyword">const</span> range = req.query.range ? <span class="hljs-built_in">Number</span>(req.query.range) : <span class="hljs-number">6</span>; <span class="hljs-comment">// 반경 몇 km로 검색할 것인지 설정</span>
+
+        <span class="hljs-keyword">if</span> (!q) {
+            <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">400</span>).json({ <span class="hljs-attr">error</span>: <span class="hljs-string">"위치를 검색해주세요."</span> });
+        }
+        <span class="hljs-keyword">const</span> latitude = <span class="hljs-built_in">Number</span>(lat);
+        <span class="hljs-keyword">const</span> longitude = <span class="hljs-built_in">Number</span>(lng);
+        <span class="hljs-keyword">const</span> geocollection = <span class="hljs-keyword">new</span> GeoFirestore(db).collection(<span class="hljs-string">"store"</span>);
+        <span class="hljs-keyword">const</span> storeSnap = <span class="hljs-keyword">await</span> geocollection
+            .near({
+                <span class="hljs-attr">radius</span>: range, <span class="hljs-comment">// km</span>
+                <span class="hljs-attr">center</span>: <span class="hljs-keyword">new</span> firebase.firestore.GeoPoint(latitude, longitude), <span class="hljs-comment">// center 값으로 검색한 위도 경도를 넣어준다.</span>
+            })
+            .get();
+
+        <span class="hljs-keyword">let</span> store = <span class="hljs-keyword">await</span> <span class="hljs-built_in">Promise</span>.all(
+            storeSnap.docs.map(<span class="hljs-keyword">async</span> (doc) =&gt; {
+                <span class="hljs-keyword">let</span> { g, ...rest } = doc.data();
+                <span class="hljs-comment">// 원하는 데이터 형태로 변경 후에 내려줌</span>
+                <span class="hljs-keyword">return</span> {
+                    ...rest,
+                    <span class="hljs-attr">id</span>: doc.id,
+                    <span class="hljs-attr">distance</span>: computeDistance({ latitude, longitude }, g.geopoint), <span class="hljs-comment">// 거리 얼마나 떨어져있나</span>
+                    <span class="hljs-attr">favorite</span>: <span class="hljs-keyword">await</span> checkFavorite(req, <span class="hljs-string">"storeId"</span>, doc.id), <span class="hljs-comment">// favorite 유무 체크</span>
+                    <span class="hljs-attr">imgUrl</span>: rest.info.imgUrls[<span class="hljs-number">0</span>] ? rest.info.imgUrls[<span class="hljs-number">0</span>] : <span class="hljs-string">""</span>, <span class="hljs-comment">// 이미지는 대표이미지 하나만 내려줌</span>
+                };
+            })
+        );
+
+        <span class="hljs-comment">// 필터 category</span>
+        <span class="hljs-keyword">if</span> (category !== <span class="hljs-string">"all"</span>) {
+            store = store.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.info.category === category);
+        }
+        <span class="hljs-comment">// 필터 vegType</span>
+        <span class="hljs-keyword">if</span> (vegType !== <span class="hljs-string">"all"</span>) {
+            store = store.filter(<span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> item.info.vegType === vegType);
+        }
+
+        <span class="hljs-comment">// 정렬</span>
+        order === <span class="hljs-string">"rated"</span>
+            ? store.sort(
+                  <span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span>
+                      <span class="hljs-built_in">Number</span>(b.info.starRating) - <span class="hljs-built_in">Number</span>(a.info.starRating)
+              )
+            : store.sort(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> <span class="hljs-built_in">Number</span>(a.distance) - <span class="hljs-built_in">Number</span>(b.distance));
+
+
+        <span class="hljs-comment">// pagination</span>
+        store = store.splice((page - <span class="hljs-number">1</span>) * limit, limit);
+
+        <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">200</span>).json(store);
+    } <span class="hljs-keyword">catch</span> (err) {
+        <span class="hljs-built_in">console</span>.log(err);
+        <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).json({
+            <span class="hljs-attr">error</span>: err,
+        });
+    }
+};
+</code></pre>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// 거리 계산</span>
+<span class="hljs-built_in">module</span>.exports = computeDistance = <span class="hljs-function">(<span class="hljs-params">startCoords, destCoords</span>) =&gt;</span> {
+    <span class="hljs-keyword">var</span> startLatRads = degreesToRadians(startCoords.latitude);
+    <span class="hljs-keyword">var</span> startLongRads = degreesToRadians(startCoords.longitude);
+    <span class="hljs-keyword">var</span> destLatRads = degreesToRadians(destCoords.latitude);
+    <span class="hljs-keyword">var</span> destLongRads = degreesToRadians(destCoords.longitude);
+
+    <span class="hljs-keyword">var</span> Radius = <span class="hljs-number">6371</span>; <span class="hljs-comment">//지구의 반경(km)</span>
+    <span class="hljs-keyword">var</span> distance =
+        <span class="hljs-built_in">Math</span>.acos(
+            <span class="hljs-built_in">Math</span>.sin(startLatRads) * <span class="hljs-built_in">Math</span>.sin(destLatRads) +
+                <span class="hljs-built_in">Math</span>.cos(startLatRads) *
+                    <span class="hljs-built_in">Math</span>.cos(destLatRads) *
+                    <span class="hljs-built_in">Math</span>.cos(startLongRads - destLongRads)
+        ) * Radius;
+
+    <span class="hljs-keyword">return</span> distance.toFixed(<span class="hljs-number">2</span>);
+};
+
+<span class="hljs-keyword">const</span> degreesToRadians = <span class="hljs-function">(<span class="hljs-params">degrees</span>) =&gt;</span> {
+    radians = (degrees * <span class="hljs-built_in">Math</span>.PI) / <span class="hljs-number">180</span>;
+    <span class="hljs-keyword">return</span> radians;
+};
+
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="2-1-주의사항"></a><a href="#2-1-주의사항" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2-1 주의사항</h3>
+<ul>
+<li>store정보 저장할때 다음과 같은 형식으로 저장해주어야한다.
+|<img src="https://user-images.githubusercontent.com/29701385/107144019-a8463780-697b-11eb-96b7-7baa98090065.png" alt="devtarian_3_1">|
+|---|</li>
+</ul>
+<pre><code class="hljs css language-js">exports.createStore = <span class="hljs-keyword">async</span> (req, res) =&gt; {
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">const</span> newStore = {};
+        <span class="hljs-keyword">const</span> { lat, lng, ...info } = req.body;
+        <span class="hljs-keyword">const</span> { createdAt, email, ...user } = req.user;
+        newStore.writer = user;
+        newStore.coordinates = <span class="hljs-keyword">new</span> admin.firestore.GeoPoint(lat, lng);
+        newStore.info = info;
+        newStore.createdAt = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().toISOString();
+        newStore.reviews = <span class="hljs-number">0</span>;
+        newStore.favorite = <span class="hljs-literal">false</span>;
+
+        <span class="hljs-keyword">const</span> geoFirestore = <span class="hljs-keyword">new</span> GeoFirestore(db);
+        <span class="hljs-keyword">const</span> collection = geoFirestore.collection(<span class="hljs-string">"store"</span>);
+
+        <span class="hljs-keyword">await</span> collection.add(newStore);
+        <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">200</span>).json({});
+    } <span class="hljs-keyword">catch</span> (err) {
+        <span class="hljs-built_in">console</span>.log(err);
+        <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">500</span>).json({ <span class="hljs-attr">error</span>: err });
+    }
+};
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/project/devtarian/devtarian_2"><span class="arrow-prev">← </span><span>※ Firebase functions로 트리거 만들기</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1-키워드로-위도-경도-알아내기">1. 키워드로 위도, 경도 알아내기</a></li><li><a href="#2-서버-위도-경도로-가장-근처-데이터-찾기-geofirestore">2. 서버: 위도 경도로 가장 근처 데이터 찾기 (geoFireStore)</a><ul class="toc-headings"><li><a href="#2-1-주의사항">2-1 주의사항</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="TIL: TODAY I LEARN" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 KyungYoon Ha</section></footer></div></body></html>
