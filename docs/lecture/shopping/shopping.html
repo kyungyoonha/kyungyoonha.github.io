@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>lecture/shopping/shopping · TIL: TODAY I LEARN</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="mongoDb. inclued는 populate()로 가져온다."/><meta name="docsearch:language" content="en"/><meta property="og:title" content="lecture/shopping/shopping · TIL: TODAY I LEARN"/><meta property="og:type" content="website"/><meta property="og:url" content="https://kyungyoonha.github.io/"/><meta property="og:description" content="mongoDb. inclued는 populate()로 가져온다."/><meta property="og:image" content="https://kyungyoonha.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://kyungyoonha.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://kyungyoonha.github.io/blog/atom.xml" title="TIL: TODAY I LEARN Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://kyungyoonha.github.io/blog/feed.xml" title="TIL: TODAY I LEARN Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/favicon.ico" alt="TIL: TODAY I LEARN"/><h2 class="headerTitleWithLogo">TIL: TODAY I LEARN</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/project/devpedia/devpedia_0" target="_self">Project</a></li><li class=""><a href="/docs/javascript/javascript_1" target="_self">TIL</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">lecture/shopping/shopping</h1></header><article><div><span><p>mongoDb. inclued는 populate()로 가져온다.
+mongoDb. offset은 skip( )으로</p>
+<h2><a class="anchor" aria-hidden="true" id="금액-필터"></a><a href="#금액-필터" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>금액 필터</h2>
+<ul>
+<li>범위 필터일 경우 아래와 같이 array로 컨트롤 하면 편함</li>
+</ul>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> data = [
+    {
+        <span class="hljs-string">"_id"</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"Any"</span>,
+        <span class="hljs-string">"array"</span>: []
+    },
+    {
+        <span class="hljs-string">"_id"</span>: <span class="hljs-number">2</span>,
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"$0 to $199"</span>,
+        <span class="hljs-string">"array"</span>: [<span class="hljs-number">0</span>, <span class="hljs-number">199</span>]
+    },
+    {
+        <span class="hljs-string">"_id"</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-string">"name"</span>: <span class="hljs-string">"$200 to $399"</span>,
+        <span class="hljs-string">"array"</span>: [<span class="hljs-number">200</span>, <span class="hljs-number">300</span>]
+    }
+]
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="몽고db---search-가중치"></a><a href="#몽고db---search-가중치" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>몽고DB - Search 가중치</h2>
+<ul>
+<li>검색할때 title에 5만큼의 비중, description에는 1만큼의 비중을 주겠다.</li>
+</ul>
+<pre><code class="hljs css language-js">ProductSchema.index({
+    <span class="hljs-attr">title</span>: <span class="hljs-string">'text'</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">'text'</span>,
+}, {
+    <span class="hljs-attr">weights</span>: {
+        <span class="hljs-attr">title</span>: <span class="hljs-number">5</span>,
+        <span class="hljs-attr">description</span>: <span class="hljs-number">1</span>
+    }
+})
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="몽고db---업데이트-숫자-count-올리기--추가"></a><a href="#몽고db---업데이트-숫자-count-올리기--추가" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>몽고DB - 업데이트: 숫자 count 올리기 / 추가</h2>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// 새로운 상품이 이미 존재하는 경우</span>
+<span class="hljs-keyword">if</span>(duplicate){
+    User.fineOneAndUpdate(
+        {<span class="hljs-attr">_id</span>: req.user.+_id, <span class="hljs-string">"card_id"</span>: req.body.productId },
+        { <span class="hljs-attr">$inc</span> : { <span class="hljs-string">"cart.$.quantity"</span> : <span class="hljs-number">1</span> }}, <span class="hljs-comment">// $inc 는 increment의 약자, 원하는 데이터의 count를 증가 시킬 수 있다.</span>
+        { <span class="hljs-attr">new</span>: <span class="hljs-literal">true</span> }, <span class="hljs-comment">// true설정할시 return되는 값을 새로 업데이트 되는 값으로 받아온다. false하면 기존 값으로 내려옴</span>
+        (err, userInfo) =&gt; {
+            <span class="hljs-keyword">if</span>(err) <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">200</span>).json({ <span class="hljs-attr">success</span>: <span class="hljs-literal">false</span>, err })
+            res.status(<span class="hljs-number">200</span>).send(UserInfo.cart) 
+        }
+    )
+}
+<span class="hljs-comment">// 새로운 상품이 없을 경우, 신규추가</span>
+<span class="hljs-keyword">else</span>{
+    UserfineOneAndUpdate(
+        {<span class="hljs-attr">_id</span>: req.user._id},
+        {
+            <span class="hljs-attr">$push</span>:{
+                <span class="hljs-attr">cart</span>: { <span class="hljs-comment">// cart데이터 안에 push된다.</span>
+                    <span class="hljs-attr">id</span>: req.body.productId, 
+                    <span class="hljs-attr">quantity</span>: <span class="hljs-number">1</span>,
+                    <span class="hljs-attr">date</span>: <span class="hljs-built_in">Date</span>.now()
+                }
+            },
+            {<span class="hljs-attr">new</span>: <span class="hljs-literal">true</span>},
+            (err,UserInfo) =&gt; {
+                <span class="hljs-keyword">if</span>(err) <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">200</span>).json({ <span class="hljs-attr">success</span>: <span class="hljs-literal">false</span>, err })
+                res.status(<span class="hljs-number">200</span>).send(UserInfo.cart)
+            }
+        }
+    )
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="get-방식으로-array-처리하기"></a><a href="#get-방식으로-array-처리하기" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>get 방식으로 array 처리하기</h2>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// id = 123214124,32132321,445352352</span>
+<span class="hljs-comment">// productIds = [123214124, 32132321, 445352352]</span>
+router.get(<span class="hljs-string">'/products_by_id'</span>, (req, res) =&gt; {
+    <span class="hljs-keyword">let</span> type = req.query.type
+    <span class="hljs-keyword">let</span> productIds = req.query.id
+
+    <span class="hljs-keyword">if</span>(type===<span class="hljs-string">'array'</span>){
+        productIds = productIds.split(<span class="hljs-string">','</span>)
+    }
+
+    <span class="hljs-comment">// 리스트 형식으로 데이터 찾아올 때 $in</span>
+    Product.find({ <span class="hljs-attr">_id</span>: { <span class="hljs-attr">$in</span>: productIds }}) 
+        .poplulate(<span class="hljs-string">'writer'</span>)
+        .exec(<span class="hljs-function">(<span class="hljs-params">err, product</span>) =&gt;</span> {
+            <span class="hljs-keyword">if</span>(err) <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">400</span>).json({ <span class="hljs-attr">success</span>: <span class="hljs-literal">false</span>, err})
+            <span class="hljs-keyword">return</span> res.status(<span class="hljs-number">200</span>).send({ <span class="hljs-attr">success</span>: <span class="hljs-literal">true</span>, productS})
+        })
+})
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#금액-필터">금액 필터</a></li><li><a href="#몽고db---search-가중치">몽고DB - Search 가중치</a></li><li><a href="#몽고db---업데이트-숫자-count-올리기--추가">몽고DB - 업데이트: 숫자 count 올리기 / 추가</a></li><li><a href="#get-방식으로-array-처리하기">get 방식으로 array 처리하기</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/favicon.ico" alt="TIL: TODAY I LEARN" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 KyungYoon Ha</section></footer></div></body></html>
